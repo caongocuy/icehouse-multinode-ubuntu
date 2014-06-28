@@ -10,7 +10,7 @@ cat << EOF >> $ifaces
 auto lo
 iface lo inet loopback
 
-# DATA NETWORK
+# MGNT NETWORK
 auto eth0
 iface eth0 inet static
 address 10.10.10.72
