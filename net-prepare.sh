@@ -19,12 +19,13 @@ cat << EOF >> $iphost
 EOF
 
 # Cai dat repos va update
-#apt-get install python-software-properties -y
-#add-apt-repository cloud-archive:icehouse
+apt-get install -y python-software-properties &&  add-apt-repository cloud-archive:icehouse -y 
 
-apt-get update -y
-apt-get upgrade -y
-apt-get dist-upgrade -y
+apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade 
+
+# apt-get update -y
+# apt-get upgrade -y
+# apt-get dist-upgrade -y
 
 echo "############Cai dat NTP va cau hinh can thiet###############"
 sleep 7 
