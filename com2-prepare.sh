@@ -26,9 +26,9 @@ EOF
 # Cai dat repos va update
 #apt-get install python-software-properties -y
 #add-apt-repository cloud-archive:icehouse
-apt-get update -y
-apt-get upgrade -y
-apt-get dist-upgrade -y
+apt-get install -y python-software-properties &&  add-apt-repository cloud-archive:icehouse -y 
+
+apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade 
 
 ########
 echo "#######################Cai dat NTP#################"
