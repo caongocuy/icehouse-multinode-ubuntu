@@ -10,7 +10,7 @@ touch $iphost
 cat << EOF >> $iphost
 127.0.0.1       localhost
 10.10.10.71    controller
-127.0.0.1       controller
+127.0.1.1       controller
 10.10.10.73      compute1
 10.10.10.74      compute2
 10.10.10.72     network
