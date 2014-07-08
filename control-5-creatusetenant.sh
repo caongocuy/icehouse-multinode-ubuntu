@@ -1,16 +1,16 @@
 #!/bin/bash -ex
 #
 
-cat > novarc << EOF
-export SERVICE_PASSWORD=a
-export TOKEN_PASS=a
-export ADMIN_PASS=a
-export OS_SERVICE_ENDPOINT="http://controller:35357/v2.0"
-export OS_SERVICE_TOKEN=a
+cat > admin-openrc << EOF
+export OS_USERNAME=admin
+export OS_PASSWORD=a
+export OS_TENANT_NAME=admin
+export OS_AUTH_URL=http://controller:35357/v2.0
 EOF
  
  
-source novarc 
+source admin-openrc
+cp admin-openrc /root/admin-openrc
 
 ADMIN_PASSWORD=${ADMIN_PASSWORD:-$ADMIN_PASS}
 export SERVICE_ENDPOINT="http://controller:35357/v2.0"
@@ -110,12 +110,4 @@ keystone endpoint-create \
 
 sleep 10
 echo "###########TAO FILE CHO BIEN MOI TRUONG##################"
-echo "export OS_USERNAME=admin" > admin-openrc
-echo "export OS_PASSWORD=a" >> admin-openrc
-echo "export OS_TENANT_NAME=admin" >> admin-openrc
-echo "export OS_SERVICE_TOKEN=a" >> admin-openrc 
-echo "export OS_AUTH_URL=http://controller:35357/v2.0" >> admin-openrc
 
-sleep 10
-echo "####################CHAY BIET MOI TRUONG##################"
-source admin-openrc
