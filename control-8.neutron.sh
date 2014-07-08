@@ -24,7 +24,7 @@ rpc_backend = neutron.openstack.common.rpc.impl_kombu
 rabbit_host = controller
 rabbit_password = $RABBIT_PASS
 state_path = /var/lib/neutron
-lock_path = $state_path/lock
+lock_path = \$state_path/lock
 core_plugin = neutron.plugins.ml2.plugin.Ml2Plugin
 notification_driver = neutron.openstack.common.notifier.rpc_notifier
 
@@ -56,7 +56,7 @@ auth_port = 35357
 admin_tenant_name = service
 admin_user = neutron
 admin_password = $ADMIN_PASS
-signing_dir = $state_path/keystone-signing
+signing_dir = \$state_path/keystone-signing
 
 [database]
 connection = mysql://neutron:$ADMIN_PASS@controller/neutron
