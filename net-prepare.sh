@@ -76,7 +76,7 @@ service_plugins = router
 allow_overlapping_ips = True
 verbose = True
 state_path = /var/lib/neutron
-lock_path = $state_path/lock
+lock_path = \$state_path/lock
 notification_driver = neutron.openstack.common.notifier.rpc_notifier
 
 [quotas]
@@ -92,7 +92,7 @@ auth_port = 35357
 admin_tenant_name = service
 admin_user = neutron
 admin_password = $ADMIN_PASS
-signing_dir = $state_path/keystone-signing
+signing_dir = \$state_path/keystone-signing
 
 [database]
 #connection = sqlite:////var/lib/neutron/neutron.sqlite
