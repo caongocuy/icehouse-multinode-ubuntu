@@ -1,4 +1,13 @@
 #!/bin/bash -ex
+
+source config.cfg
+
+echo "Cau hinh hostname cho COMPUTE1 NODE"
+sleep 3
+echo "compute1" > /etc/hostname
+hostname -F /etc/hostname
+
+
 ifaces=/etc/network/interfaces
 test -f $ifaces.orig || cp $ifaces $ifaces.orig
 rm $ifaces
@@ -13,23 +22,23 @@ iface lo inet loopback
 # MGNT NETWORK
 auto eth0
 iface eth0 inet static
-address 10.10.10.73
-netmask 255.255.255.0
+address $COM1_MGNT_IP
+netmask $NETMASK_ADD
 
 
 # EXT NETWORK
 auto eth1
 iface eth1 inet static
-address 192.168.1.73
-netmask 255.255.255.0
-gateway 192.168.1.1
+address $COM1_EXT_IP
+netmask $NETMASK_ADD
+gateway $GATEWAY_IP
 dns-nameservers 8.8.8.8
 
 # DATA NETWORK
 auto eth2
 iface eth2 inet static
-address 10.10.20.73
-netmask 255.255.255.0
+address $COM1_DATA_VM_IP
+netmask $NETMASK_ADD
 
 EOF
 
@@ -42,6 +51,7 @@ EOF
 # ifdown eth2 && ifup eth2
 
 #sleep 5
+
 init 6
 #
 

@@ -1,13 +1,13 @@
 #!/bin/bash -ex
 #
 # Khoi tao bien
-TOKEN_PASS=a
-MYSQL_PASS=a
-ADMIN_PASS=a
+# TOKEN_PASS=a
+# MYSQL_PASS=a
+# ADMIN_PASS=a
+source config.cfg
 
-# Cai dat keystone
+echo "##### Cai dat keystone #####"
 apt-get install keystone -y
-
 
 #/* Sao luu truoc khi sua file nova.conf
 filekeystone=/etc/keystone/keystone.conf
@@ -47,15 +47,16 @@ connection = mysql://keystone:$ADMIN_PASS@controller/keystone
 Distribution = Ubuntu
 EOF
 #
-# Xoa DB mac dinh
+echo "##### Xoa DB mac dinh #####"
 rm  /var/lib/keystone/keystone.db
 
-#Khoi dong lai MYSQL
+echo "##### Khoi dong lai MYSQL #####"
 service keystone restart
 sleep 3
 service keystone restart
 
-# Dong bo cac bang trong DB
+echo "##### Dong bo cac bang trong DB #####"
+sleep 3
 keystone-manage db_sync
 
 (crontab -l -u keystone 2>&1 | grep -q token_flush) || \

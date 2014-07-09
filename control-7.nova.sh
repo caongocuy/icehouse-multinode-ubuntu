@@ -1,15 +1,17 @@
 #!/bin/bash -ex
 #
-RABBIT_PASS=a
-ADMIN_PASS=a
-CON_IP_MGNT=10.10.10.71
-METADATA_SECRET=hell0
+# RABBIT_PASS=a
+# ADMIN_PASS=a
+# CON_IP_MGNT=10.10.10.71
+# METADATA_SECRET=hell0
 
-echo "########## CAI DAT NOVA TREN CONTROLLER################"
+source config.cfg
+
+echo "########## CAI DAT NOVA TREN CONTROLLER ##########"
 sleep 5 
 apt-get -y install nova-api nova-cert nova-conductor nova-consoleauth nova-novncproxy nova-scheduler python-novaclient
 
-######## SAO LUU CAU HINH cho NOVA##################"
+######## SAO LUU CAU HINH cho NOVA ##########"
 sleep 7
 
 #
@@ -38,9 +40,9 @@ enabled_apis=ec2,osapi_compute,metadata
 rpc_backend = rabbit
 rabbit_host = controller
 rabbit_password = $RABBIT_PASS
-my_ip = $CON_IP_MGNT
-vncserver_listen = $CON_IP_MGNT
-vncserver_proxyclient_address = $CON_IP_MGNT
+my_ip = $CON_MGNT_IP
+vncserver_listen = $CON_MGNT_IP
+vncserver_proxyclient_address = $CON_MGNT_IP
 auth_strategy = keystone
 network_api_class = nova.network.neutronv2.api.API
 neutron_url = http://controller:9696
@@ -68,15 +70,15 @@ admin_user = nova
 admin_password = $ADMIN_PASS
 EOF
 
-echo "#############XOA FILE DB MAC DINH############"
+echo "########## XOA FILE DB MAC DINH ##########"
 sleep 7
 rm /var/lib/nova/nova.sqlite
 
-echo "############DONG BO DB CHO NOVA##############"
+echo "########## DONG BO DB CHO NOVA ##########"
 sleep 7 
 nova-manage db sync
 
-echo "#################KHOI DONG LAI NOVA###############"
+echo "########## KHOI DONG LAI NOVA ##########"
 sleep 7 
 service nova-api restart
 service nova-cert restart
@@ -85,7 +87,7 @@ service nova-scheduler restart
 service nova-conductor restart
 service nova-novncproxy restart
 sleep 7 
-echo "########### KHOI DONG NOVA LAN 2################"
+echo "########## KHOI DONG NOVA LAN 2 ##########"
 service nova-api restart
 service nova-cert restart
 service nova-consoleauth restart
@@ -93,6 +95,6 @@ service nova-scheduler restart
 service nova-conductor restart
 service nova-novncproxy restart
 
-echo "#############KIEM TRAA LAI DICH VU NOVA##############"
+echo "########## KIEM TRA LAI DICH VU NOVA ##########"
 nova-manage service list
 

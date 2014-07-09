@@ -1,15 +1,17 @@
 #!/bin/bash -ex
 #
 
+source config.cfg
+
 # Cau hinh cho file /etc/hosts
-COM1_IP_MGNT=10.10.10.73
-COM1_IP_DATA=10.10.20.73
-COM2_IP_MGNT=10.10.10.74
-COM2_IP_DATA=10.10.20.74
-CON_IP_EX=192.168.1.71
-CON_IP_MGNT=10.10.10.71
-ADMIN_PASS=a
-RABBIT_PASS=a
+# COM1_IP_MGNT=10.10.10.73
+# COM1_IP_DATA=10.10.20.73
+# COM2_IP_MGNT=10.10.10.74
+# COM2_IP_DATA=10.10.20.74
+# CON_IP_EX=192.168.1.71
+# CON_IP_MGNT=10.10.10.71
+# ADMIN_PASS=a
+# RABBIT_PASS=a
 #
 iphost=/etc/hosts
 test -f $iphost.orig || cp $iphost $iphost.orig
@@ -17,11 +19,11 @@ rm $iphost
 touch $iphost
 cat << EOF >> $iphost
 127.0.0.1       localhost
-10.10.10.71    controller
-10.10.10.73      compute1
+$CON_MGNT_IP    controller
+$COM1_MGNT_IP      compute1
 127.0.0.1        compute1
-10.10.10.74      compute2
-10.10.10.72     network
+$COM2_MGNT_IP      compute2
+$NET_MGNT_IP     network
 EOF
 
 # Cai dat repos va update
@@ -34,7 +36,7 @@ apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade
 # apt-get dist-upgrade -y
 
 ########
-echo "#######################Cai dat NTP#################"
+echo "############ Cai dat NTP ############"
 ########
 #Cai dat NTP va cau hinh can thiet 
 apt-get install ntp -y
@@ -44,7 +46,7 @@ apt-get install python-mysqldb -y
 apt-get install nova-compute-kvm python-guestfs -y
 
 ########
-echo "#######################Cau hinh NTP#################"
+echo "############ Cau hinh NTP ############"
 sleep 10
 ########
 # Cau hinh ntp
@@ -75,7 +77,7 @@ EOF
 
 chmod +x /etc/kernel/postinst.d/statoverride
 ########
-echo "#############################Cau hinh nova.conf####################"
+echo "############ Cau hinh nova.conf ############"
 sleep 5
 ########
 #/* Sao luu truoc khi sua file nova.conf
@@ -114,11 +116,11 @@ auth_strategy = keystone
 rpc_backend = rabbit
 rabbit_host = controller
 rabbit_password = $RABBIT_PASS
-my_ip = $COM1_IP_MGNT
+my_ip = $COM1_MGNT_IP
 vnc_enabled = True
 vncserver_listen = 0.0.0.0
-vncserver_proxyclient_address = $COM1_IP_MGNT
-novncproxy_base_url = http://$CON_IP_EX:6080/vnc_auto.html
+vncserver_proxyclient_address = $COM1_MGNT_IP
+novncproxy_base_url = http://$CON_EXT_IP:6080/vnc_auto.html
 glance_host = controller
 [database]
 connection = mysql://nova:$ADMIN_PASS@controller/nova
@@ -140,14 +142,14 @@ service nova-compute restart
 service nova-compute restart
 
 ########
-echo "##############################Cai dat neutron agent######################"
+echo "############ Cai dat neutron agent ############"
 sleep 5
 ########
 # Cai dat neutron agent
 apt-get install neutron-common neutron-plugin-ml2 neutron-plugin-openvswitch-agent openvswitch-datapath-dkms -y
 
 ##############################
-echo "#############################Cau hinh neutron.conf#########################"
+echo "############ Cau hinh neutron.conf ############"
 sleep 5
 #############################
 comfileneutron=/etc/neutron/neutron.conf
@@ -192,7 +194,7 @@ EOF
 #
 
 ########
-echo "#########################Cau hinh ml2_conf.ini######################"
+echo "############ Cau hinh ml2_conf.ini ############"
 sleep 5
 ########
 comfileml2=/etc/neutron/plugins/ml2/ml2_conf.ini
@@ -216,7 +218,7 @@ tunnel_id_ranges = 1:1000
 [ml2_type_vxlan]
 
 [ovs]
-local_ip = $COM1_IP_DATA
+local_ip = $COM1_DATA_VM_IP
 tunnel_type = gre
 enable_tunneling = True
 
@@ -228,21 +230,21 @@ EOF
 
 # Khoi dong lai OpenvSwitch
 ########
-echo "#############################Khoi dong lai OpenvSwitch#######################"
+echo "############ Khoi dong lai OpenvSwitch ############"
 sleep 5
 ########
 service openvswitch-switch restart
 
 
 ########
-echo "##############################Tao integration bridge########################"
+echo "############ Tao integration bridge ############"
 sleep 5
 ########
 # Tao integration bridge
 ovs-vsctl add-br br-int
 
 ##########
-echo "#############################Khoi dong lai Compute#############################"
+echo "############ Khoi dong lai Compute ############"
 sleep 5
 
 ########
@@ -251,17 +253,24 @@ service nova-compute restart
 service nova-compute restart
 
 ########
-echo "###############################Khoi dong lai Openvswitch agent#####################"
+echo "############ Khoi dong lai Openvswitch agent ############"
 sleep 5
 ########
 # Khoi dong lai Openvswitch agent
 service neutron-plugin-openvswitch-agent restart
 service neutron-plugin-openvswitch-agent restart
 
+echo "########## TAO FILE CHO BIEN MOI TRUONG ##########"
+sleep 5
+echo "export OS_USERNAME=admin" > admin-openrc.sh
+echo "export OS_PASSWORD=$ADMIN_PASS" >> admin-openrc.sh
+echo "export OS_TENANT_NAME=admin" >> admin-openrc.sh
+echo "export OS_AUTH_URL=http://controller:35357/v2.0" >> admin-openrc.sh
+
 ########
-echo "#########################KIEM TRA LAI NOVA va NEUTRON #####################"
+echo "############ KIEM TRA LAI NOVA va NEUTRON ############"
 sleep 5
 ########
-source admin_openrc.sh
+source admin-openrc.sh
 nova-manage service list
 neutron agent-list

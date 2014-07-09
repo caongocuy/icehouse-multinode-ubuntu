@@ -1,7 +1,10 @@
 #!/bin/bash -ex
 #
-RABBIT_PASS=a
-ADMIN_PASS=a
+# RABBIT_PASS=a
+# ADMIN_PASS=a
+
+source config.cfg
+
 SERVICE_ID=`keystone tenant-get service | awk '$2~/^id/{print $4}'`
 
 
@@ -10,7 +13,7 @@ sleep 5
 apt-get -y install neutron-server neutron-plugin-ml2
 
 ######## SAO LUU CAU HINH NEUTRON.CONF CHO CONTROLLER##################"
-echo "############ SUA FILE CAU HINH  NEUTRON CHO CONTROLLER##########"
+echo "########## SUA FILE CAU HINH  NEUTRON CHO CONTROLLER ##########"
 sleep 7
 
 #
@@ -69,7 +72,7 @@ EOF
 
 
 ######## SAO LUU CAU HINH ML2 CHO CONTROLLER##################"
-echo "############ SUA FILE CAU HINH  ML2 CHO CONTROLLER##########"
+echo "########## SUA FILE CAU HINH  ML2 CHO CONTROLLER ##########"
 sleep 7
 
 controlML2=/etc/neutron/plugins/ml2/ml2_conf.ini
@@ -99,12 +102,12 @@ EOF
 
 
 
-echo "###################KHOI DONG LAI NOVA###############################"
+echo "########## KHOI DONG LAI NOVA ##########"
 sleep 7 
 service nova-api restart
 service nova-scheduler restart
 service nova-conductor restart
 
-echo "###############KHOI DONG LAI NEUTRON #####################"
+echo "########## KHOI DONG LAI NEUTRON ##########"
 sleep 7 
 service neutron-server restart

@@ -1,9 +1,12 @@
 #!/bin/bash -ex
 #
-RABBIT_PASS=a
-ADMIN_PASS=a
-METADATA_SECRET=hell0
-NET_IP_DATA=10.10.20.72 
+# RABBIT_PASS=a
+# ADMIN_PASS=a
+# METADATA_SECRET=hell0
+# NET_IP_DATA=10.10.20.72 
+
+source config.cfg
+
 # Cau hinh cho file /etc/hosts
 iphost=/etc/hosts
 test -f $iphost.orig || cp $iphost $iphost.orig
@@ -11,29 +14,28 @@ rm $iphost
 touch $iphost
 cat << EOF >> $iphost
 127.0.0.1       localhost
-10.10.10.71    controller
-10.10.10.73      compute1
-10.10.10.74      compute2
-10.10.10.72     network
-127.0.0.1       network
+$CON_MGNT_IP    controller
+$COM1_MGNT_IP      compute1
+$COM2_MGNT_IP      compute2
+$NET_MGNT_IP     network
+127.0.1.1       network
 EOF
 
 # Cai dat repos va update
 apt-get install -y python-software-properties &&  add-apt-repository cloud-archive:icehouse -y 
-
 apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade 
 
 # apt-get update -y
 # apt-get upgrade -y
 # apt-get dist-upgrade -y
 
-echo "############Cai dat NTP va cau hinh can thiet###############"
+echo "############ Cai dat NTP va cau hinh can thiet ############ "
 sleep 7 
 
 apt-get install ntp -y
 apt-get install python-mysqldb -y
 #
-echo "############Sao luu cau hinh cua NTP########################"
+echo "############ Sao luu cau hinh cua NTP ############ "
 sleep 7 
 cp /etc/ntp.conf /etc/ntp.conf.bka
 rm /etc/ntp.conf
@@ -43,21 +45,21 @@ sed -i 's/server/#server/' /etc/ntp.conf
 echo "server controller" >> /etc/ntp.conf
 
 #
-echo "#############Cau hinh forward goi tin cho cac VM#######################"
+echo "############ Cau hinh forward goi tin cho cac VM ############"
 sleep 7 
 echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
 echo "net.ipv4.conf.all.rp_filter=0" >> /etc/sysctl.conf
 echo "net.ipv4.conf.default.rp_filter=0" >> /etc/sysctl.conf
 sysctl -p 
 
-echo "############### Cai cac goi cho network node ################"
+echo "############ Cai cac goi cho network node ############ "
 sleep 7 
 apt-get install neutron-plugin-ml2 neutron-plugin-openvswitch-agent openvswitch-datapath-dkms neutron-l3-agent neutron-dhcp-agent -y
 #
-echo "###################CAU HINH CHO NETWORK NODE##################"
+echo "############  CAU HINH CHO NETWORK NODE ############ "
 sleep 7 
 #
-echo "####################Sua file cau hinh neutron.conf#########"
+echo "############ Sua file cau hinh neutron.conf ############"
 sleep 7 
 #
 netneutron=/etc/neutron/neutron.conf
@@ -99,7 +101,7 @@ signing_dir = \$state_path/keystone-signing
 [service_providers]
 EOF
 #
-echo "####################Sua file cau hinh L3 AGENT #########"
+echo "############ Sua file cau hinh L3 AGENT ############"
 sleep 7 
 #
 netl3agent=/etc/neutron/l3_agent.ini
@@ -114,7 +116,7 @@ use_namespaces = True
 verbose = True
 EOF
 #
-echo "####################Sua file cau hinh DHCP AGENT #########"
+echo "############  Sua file cau hinh DHCP AGENT ############ "
 sleep 7 
 #
 netdhcp=/etc/neutron/dhcp_agent.ini
@@ -131,7 +133,7 @@ use_namespaces = True
 verbose = True
 EOF
 #
-echo "####################Sua file cau hinh METADATA AGENT #########"
+echo "############  Sua file cau hinh METADATA AGENT ############"
 sleep 7 
 #
 netmetadata=/etc/neutron/metadata_agent.ini
@@ -153,7 +155,7 @@ verbose = True
 EOF
 #
 
-echo "####################Sua file cau hinh ML2 AGENT #########"
+echo "############ Sua file cau hinh ML2 AGENT ############"
 sleep 7 
 #
 netml2=/etc/neutron/plugins/ml2/ml2_conf.ini
@@ -178,7 +180,7 @@ tunnel_id_ranges = 1:1000
 [ml2_type_vxlan]
 
 [ovs]
-local_ip = $NET_IP_DATA
+local_ip = $NET_DATA_VM_IP
 tunnel_type = gre
 enable_tunneling = True
 
@@ -188,7 +190,7 @@ enable_security_group = True
 
 EOF
 
-echo "####Kho dong lai OpenvSwitch#########"
+echo "############  Khoi dong lai OpenvSwitch ############"
 sleep 7
 
 service openvswitch-switch restart
@@ -197,19 +199,14 @@ service neutron-l3-agent restart
 service neutron-dhcp-agent restart
 service neutron-metadata-agent restart
 
-echo "########## kiem tra cac agent###############"
-sleep 7 
-source admin-openrc.sh
-neutron agent-list
+echo "########## TAO FILE CHO BIEN MOI TRUONG ##########"
+sleep 5
+echo "export OS_USERNAME=admin" > admin-openrc.sh
+echo "export OS_PASSWORD=$ADMIN_PASS" >> admin-openrc.sh
+echo "export OS_TENANT_NAME=admin" >> admin-openrc.sh
+echo "export OS_AUTH_URL=http://controller:35357/v2.0" >> admin-openrc.sh
 
-echo "####Cau hinh bridge cho Network node#########"
-sleep 7
+echo "############ kiem tra cac agent ############ "
+sleep 1 
 
-ovs-vsctl add-br br-int
-ovs-vsctl add-br br-ex
-ovs-vsctl add-port br-ex eth1
-
-echo "##############Khoi dong lai may chu#########"
-sleep 7 
-init 6
 

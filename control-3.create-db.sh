@@ -1,19 +1,20 @@
 #!/bin/bash -ex
 
 #Khai bao bien
-MYSQL_PASS=a
-MYSQL_ADMIN_PASS=a
-
-#Bat dau thuc thi
+source config.cfg
+ 
+echo "##### Cai dat MYSQL #####"
+sleep 3
 
 echo mysql-server mysql-server/root_password password $MYSQL_ADMIN_PASS | debconf-set-selections
 echo mysql-server mysql-server/root_password_again password $MYSQL_ADMIN_PASS | debconf-set-selections
 apt-get update
 apt-get install mysql-server python-mysqldb -y
 
-# Cau hinh cho MYSQL
+echo "##### Cau hinh cho MYSQL #####"
+sleep 3
+
 sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mysql/my.cnf
-#
 sed -i "/bind-address/a\default-storage-engine = innodb\n\
 collation-server = utf8_general_ci\n\
 init-connect = 'SET NAMES utf8'\n\
@@ -21,7 +22,8 @@ character-set-server = utf8" /etc/mysql/my.cnf
 #
 service mysql restart
 
-#Tao DATABASE 
+echo "##### Tao DATABASE #####"
+sleep 3
 
 cat << EOF | mysql -uroot -p$MYSQL_PASS
 DROP DATABASE IF EXISTS keystone;
@@ -58,4 +60,5 @@ GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'controller' IDENTIFIED BY '$MYSQ
 FLUSH PRIVILEGES;
 EOF
 #
+echo "##### KET THUC QUA TRINH CAI VA TAO DB #####"
 exit;
