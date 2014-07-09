@@ -34,7 +34,7 @@ HDCD - OpenStack Icehouse - Multi node
 
 # A. Thông tin LAB
 ## 0. Chuẩn bị trên VMware Workstation
-Cấu hình các vmnet trong vmware workdstation như hình dưới. (Đảm bảo các dải thiết lập đúng với từng vmnet)
+<b> Cấu hình các vmnet trong vmware workdstation như hình dưới. (Đảm bảo các dải thiết lập đúng với từng vmnet)</b>
 - VMNET0 - Chế độ bridge (mặc định). Nhận cùng dải IP card mạng trong laptop, 192.168.1.0/24
 - VMNET2 - Chế độ VMNET 2. Đặt dải IP 10.10.10.0/24
 - VMNET3 - Chế độ VMNET 3. Đặt dải IP 10.10.20.0/24
@@ -72,7 +72,8 @@ Vào tab "Edit" ==> Virtual Network Editor.
 ![Alt text](http://i.imgur.com/zuNIVIE.png)
 
 
-## 1. Mô hình đấu cài cài đặt
+## 1. Mô hình triển khai trong môi trường VMware 
+
 
 
 ## 2. Thiết lập cho từng node
