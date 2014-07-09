@@ -203,7 +203,11 @@ COMPUTE node sẽ khởi động lại, cần phải đăng nhập bằng tải 
 
     cd script-ubuntu1204
     bash com1-prepare.sh
-    
+
+Chọn YES ở màn hình trên trong quá trình cài đặt
+
+![Alt text](http://i.imgur.com/jlRegTI.png)
+
 Kết thúc bước cài đặt trên COMPUTE NODE, chuyển về CONTROLLER NODE.
 
 
@@ -219,8 +223,9 @@ Kết thúc bước cài đặt trên COMPUTE NODE, chuyển về CONTROLLER NOD
 Sau khi thực hiện xong việc cài đặt HORIZON, màn hình sẽ trả về IP ADD, User và Password để đăng nhập vào horizon    
     
 ## F.2. Tạo PUBLIC NET, PRIVATE NET, ROUTER
+Tạo các policy để cho phép các máy ở ngoài có thể truy cập vào máy ảo (Instance) qua IP PUBLIC được floating.
 Thực hiện script dưới để tạo các loại network cho OpenStack
-Tạo router, gán subnet cho router, gán gateway cho router 
+Tạo router, gán subnet cho router, gán gateway cho router
 Khởi tạo một máy ảo với image là cirros để test
 
     bash creat-network.sh
