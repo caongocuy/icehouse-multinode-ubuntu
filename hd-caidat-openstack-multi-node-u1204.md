@@ -14,8 +14,10 @@ Truy cập bằng tài khoản root vào máy Controller, tải các gói chuẩ
 
 	apt-get install git -y
 	git clone https://github.com/congto/icehouse-multinode-ubuntu.git
-	chmod +x icehouse-multinode-ubuntu
+	mv /root/icehouse-multinode-ubuntu/script-ubuntu1204/ script-ubuntu1204
+	cd script-ubuntu1204
+	chmod +x *.sh
 	
-# Thực thi script thiết lập IP, hostname ...
+## Thực thi script thiết lập IP, hostname ...
 
-	sfd
+	bash control
