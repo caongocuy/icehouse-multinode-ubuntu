@@ -48,9 +48,13 @@ HDCD - OpenStack Icehouse - Multi node
 Truy cập bằng tài khoản root vào máy các máy chủ và tải các gói, script chuẩn bị cho quá trình cài đặt
 
 	apt-get install git -y
+	
 	git clone https://github.com/congto/icehouse-multinode-ubuntu.git
+	
 	mv /root/icehouse-multinode-ubuntu/script-ubuntu1204/ script-ubuntu1204
+	
 	cd script-ubuntu1204
+	
 	chmod +x *.sh
 
 ## 2. Sửa file khai báo các thông số trước khi thực thi shell
