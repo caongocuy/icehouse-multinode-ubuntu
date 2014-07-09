@@ -31,6 +31,7 @@ Sau khi thay đổi xong chuyển qua thực thi các file dưới.
 Sau khi thực hiện script trên, máy Controller sẽ khởi động lại và được gán IP tĩnh.
 
 ## Cài đặt các gói MYSQL, NTP cho Controller Node
-Đăng nhập vào Controller bằng địa chỉ CON_EXT_IP khai báo trong file config.cfg với tài khoản root, sau đó di chuyển vào thư mục script-ubuntu1204 bằng lệnh cd
+Đăng nhập vào Controller bằng địa chỉ CON_EXT_IP (file gốc là 192.168.1.71) khai báo trong file config.cfg với tài khoản root.
+Ssau đó di chuyển vào thư mục script-ubuntu1204 bằng lệnh cd 
 
     cd script-ubuntu1204
