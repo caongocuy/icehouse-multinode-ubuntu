@@ -20,4 +20,4 @@ Truy cập bằng tài khoản root vào máy Controller, tải các gói chuẩ
 	
 ## Thực thi script thiết lập IP, hostname ...
 
-	bash control
+	bash control-1.ipadd.sh
