@@ -77,6 +77,30 @@ Thực thi shell dưới để tạo các database, user của database cho các
 
     bash control-4.keystone.sh
 
+Sau khi cài xong keystone, thực thi biến môi trường
+
+    source admin-openrc.sh
+
+Và kiểm tra lại dịch vụ keystone xem đã hoạt động tốt chưa bằng lệnh dưới
+
+     keystone user-list
+
+Kết quả của lệnh keystone user-list như sau 
+
+    +----------------------------------+---------+---------+-----------------------+
+    |                id                |   name  | enabled |         email         |
+    +----------------------------------+---------+---------+-----------------------+
+    | eda2f227988a45fcbc9ffb0abd405c6c |  admin  |   True  |  congtt@teststack.com |
+    | 07f996af33f14415adaf8d6aa6b8be83 |  cinder |   True  |  cinder@teststack.com |
+    | 6a198132f715468e860fa25d8163888e |   demo  |   True  |  congtt@teststack.com |
+    | 4fa14e44dafb48f09b2febaa2a665311 |  glance |   True  |  glance@teststack.com |
+    | 5f345c4a266d4c7691831924e1eec1f5 | neutron |   True  | neutron@teststack.com |
+    | d4b7c90da1c148be8741168c916cf149 |   nova  |   True  |   nova@teststack.com  |
+    | ddcb21870b4847b4b72853cfe7badd07 |  swift  |   True  |  swift@teststack.com  |
+    +----------------------------------+---------+---------+-----------------------+
+
+Chuyển qua cài các dịch vụ tiếp theo
+
 ## Tạo user, role, tenant, phân quyền cho user và tạo các endpoint
 Shell dưới thực hiện việc tạo user, tenant và gán quyền cho các user. Ngoài ra còn tạo ra các endpoint cho các dịch vụ. Các biến trong shell được lấy từ file config.cfg
 
