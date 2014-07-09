@@ -10,11 +10,12 @@
 # Các bước thực hiện
 
 ## Thao tác trên Controller Node
+Truy cập bằng tài khoản root vào máy Controller, tải các gói chuẩn bị cho quá trình cài đặt
 
-- Truy cập bằng tài khoản root vào máy Controller, tải các gói chuẩn bị cho quá trình cài đặt
-  
-    apt-get install git -y
-    git clone https://github.com/congto/icehouse-multinode-ubuntu.git
-    chmod +x icehouse-multinode-ubuntu
+	apt-get install git -y
+	git clone https://github.com/congto/icehouse-multinode-ubuntu.git
+	chmod +x icehouse-multinode-ubuntu
+	
+# Thực thi script thiết lập IP, hostname ...
 
-
+	sfd
