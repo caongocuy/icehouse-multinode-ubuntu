@@ -159,7 +159,7 @@ Tạm dừng việc cài đặt trên CONTROLLER NODE, sau khi cài xong NETWORK
 
 # D. CÀI ĐẶT TRÊN NETWORKNODE
 Cài đặt NEUTRON, ML2 và cấu hình GRE, sử dụng use case per-router per-tenant.
-Lưu ý: Thực hiện bước tải script từ github về như hướng dẫn ở bước trên cùng
+Lưu ý: Cần thực hiện bước tải script từ github về như hướng dẫn ở bước B.1 và B.2 (nếu có thay đổi IP)
 
 ## D.1. Thực hiện đặt IP cho NETWORK NODE với tham số khai báo trong file
 Script thực hiện việc cài đặt OpenvSwitch và khai báo br-int & br-ex cho OpenvSwitch
@@ -169,13 +169,21 @@ Script thực hiện việc cài đặt OpenvSwitch và khai báo br-int & br-ex
 NETWORK NODE sẽ khởi động lại, cần phải đăng nhập lại sau khi khởi động xong bằng tài khoản root.
 
 ## D.2. Thực thi việc cài đặt NEUTRON và cấu hình
+Sau khi thực hiện xong shell ở bước trên, NETWROK NODE sẽ có IP như sau (giống khai báo trong file config.cfg):
+- eth0: 10.10.10.71
+- br-ex: 192.168.1.71 (lấy IP của eth1 sau khi cài OpenvSwitch)
+- eth2: 10.10.20.71
 
+Dùng putty ssh vào NETWORK NODE bằng IP 192.168.1.172 với tài khoản root
+Di chuyển vào thư mục script-ubuntu1204 và thực thi shell dưới
+
+    cd script-ubuntu1204
     bash net-prepare.sh
 
 Kết thúc cài đặt trên NETWORK NODE và chuyển sang cài đặt COMPUTE NODE
 
 # E. CÀI ĐẶT TRÊN COMPUTE NODE (COMPUTE1)
-Lưu ý: Thực hiện cài đặt gói git và tải các script từ github về theo hướng dẫn ở bước trên cùng
+Lưu ý: Cần thực hiện bước tải script từ github về như hướng dẫn ở bước B.1 và B.2 (nếu có thay đổi IP)
 Thực hiện các shell dưới để thiết lập hostname, gán ip và cài đặt các thành phần của nove trên máy COMPUTE NODE
 
 ## E.1. Đặt hostname, IP và các gói bổ trợ
