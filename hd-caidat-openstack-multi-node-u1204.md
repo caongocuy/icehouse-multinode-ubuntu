@@ -119,12 +119,8 @@ GLANCE dùng để cung cấp image template để khởi tạo máy ảo
 
     bash control-8.neutron.sh
     
-## Cài đặt Horizon
 
-    bash control-horizon.sh
-    
-Tạm dừng việc cài đặt trên CONTROLLER NODE, sau khi cài xong NETWORK NODE và COMPUTE1 NODE sẽ quay lại
-
+Tạm dừng việc cài đặt trên CONTROLLER NODE, sau khi cài xong NETWORK NODE và COMPUTE1 NODE sẽ quay lại để cài HORIZON và tạo các network, router.
 
 # CÀI ĐẶT TRÊN NETWORKNODE
 Cài đặt NEUTRON, ML2 và cấu hình GRE, sử dụng use case per-router per-tenant.
@@ -158,7 +154,14 @@ Thực hiện các shell dưới để thiết lập hostname, gán ip và cài 
 Kết thúc bước cài đặt trên COMPUTE NODE, chuyển về CONTROLLER NODE.
 
 
-# Tạo PUBLIC NET, PRIVATE NET, ROUTER
+
+# CÀI HORIZON, tạo các network trên CONTROLLER NODE
+
+## Cài đặt Horizon
+
+    bash control-horizon.sh
+
+## Tạo PUBLIC NET, PRIVATE NET, ROUTER
 Thực hiện script dưới để tạo các loại network cho OpenStack
 Tạo router, gán subnet cho router, gán gateway cho router 
 Khởi tạo một máy ảo với image là cirros để test
