@@ -49,9 +49,9 @@ File gốc như sau: (tốt nhất đặt giống file gốc)
 	DEFAULT_PASS='Welcome123'
 
 
-Sau khi thay đổi xong chuyển qua thực thi các file dưới.
+Sau khi thay đổi xong chuyển qua thực thi các file dưới trên từng node
 
-	
+# Thực hiện trên CONTROLLER NODE
 ## Thực thi script thiết lập IP, hostname ...
 
 	bash control-1.ipadd.sh
@@ -66,13 +66,38 @@ Ssau đó di chuyển vào thư mục script-ubuntu1204 bằng lệnh cd
 
 Thực thi file control-2.prepare.sh
 
-	bash control-2.prepare.sh
+    bash control-2.prepare.sh
 
+## Tạo Database cho các thành phần 
+Thực thi shell dưới để tạo các database, user của database cho các thành phần
 
+    bash control-3.create-db.sh
+    
+# Cài đặt và cấu hình keystone
 
+    bash control-4.keystone.sh
 
+# Tạo user, role, tenant, phân quyền cho user và tạo các endpoint cho các dịch vụ trong OpenStack
 
+    bash control-5-creatusetenant.sh
+    
+# Cài đặt thành phần GLANCE để cung cấp image template để khởi tạo máy ảo
 
+    bash control-6.glance.sh
+    
+# Cài đặt NOVA
+
+    bassh control-7.nova.sh
+    
+# Cài đặt NEUTRON
+
+    bash control-8.neutron.sh
+    
+# Cài đặt Horizon
+
+    bash control-horizon.sh
+    
+Tạm dừng việc cài đặt trên CONTROLLER NODE, sau khi cài xong NETWORK NODE và COMPUTE1 NODE sẽ quay lại
 
 
 
