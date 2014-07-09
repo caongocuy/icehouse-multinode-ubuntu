@@ -170,9 +170,9 @@ NETWORK NODE sẽ khởi động lại, cần phải đăng nhập lại sau khi
 
 ## D.2. Thực thi việc cài đặt NEUTRON và cấu hình
 Sau khi thực hiện xong shell ở bước trên, NETWROK NODE sẽ có IP như sau (giống khai báo trong file config.cfg):
-- eth0: 10.10.10.71
-- br-ex: 192.168.1.71 (lấy IP của eth1 sau khi cài OpenvSwitch)
-- eth2: 10.10.20.71
+- eth0: 10.10.10.72
+- br-ex: 192.168.1.72 (lấy IP của eth1 sau khi cài OpenvSwitch)
+- eth2: 10.10.20.72
 
 Dùng putty ssh vào NETWORK NODE bằng IP 192.168.1.172 với tài khoản root
 Di chuyển vào thư mục script-ubuntu1204 và thực thi shell dưới
@@ -189,9 +189,19 @@ Thực hiện các shell dưới để thiết lập hostname, gán ip và cài 
 ## E.1. Đặt hostname, IP và các gói bổ trợ
 
     bash com1-ipdd.sh
+
+
+Sau khi thực hiện xong shell trên các NICs của COMPUTE NODE sẽ như sau: (giống với khai báo trong file config.cfg)
+- eth0: 10.10.10.73
+- eth1: 192.168.1.73 (cài xong nova có thể disable đi)
+- eth2: 10.10.20.73
+
+COMPUTE node sẽ khởi động lại, cần phải đăng nhập bằng tải khoản root để thực hiện shell dưới
     
 ## E.2. Cài đặt các gói của NOVA cho COMPUTE NODE
+Đăng nhập bằng tài khoản root và thực thi các lệnh dưới để tiến hành cài đặt nova
 
+    cd script-ubuntu1204
     bash com1-prepare.sh
     
 Kết thúc bước cài đặt trên COMPUTE NODE, chuyển về CONTROLLER NODE.
@@ -201,18 +211,23 @@ Kết thúc bước cài đặt trên COMPUTE NODE, chuyển về CONTROLLER NOD
 # F. CÀI HORIZON, tạo các network trên CONTROLLER NODE
 
 ## F.1. Cài đặt Horizon
+Đăng nhập bằng tài khoản root và đứng tại thư mục /root/script-ubuntu1204
 
+    cd /root/script-ubuntu1204
     bash control-horizon.sh
 
+Sau khi thực hiện xong việc cài đặt HORIZON, màn hình sẽ trả về IP ADD, User và Password để đăng nhập vào horizon    
+    
 ## F.2. Tạo PUBLIC NET, PRIVATE NET, ROUTER
 Thực hiện script dưới để tạo các loại network cho OpenStack
 Tạo router, gán subnet cho router, gán gateway cho router 
 Khởi tạo một máy ảo với image là cirros để test
 
     bash creat-network.sh
-    
-# KÊT THÚC
 
+Đăng nhập vào HORIZON ở bước F1 và sử dụng OpenStack
+# KÊT THÚC
+ CHÚC VUI !
 
 
 
