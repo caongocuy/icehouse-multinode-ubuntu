@@ -78,6 +78,9 @@ echo "########## DONG BO DB CHO NOVA ##########"
 sleep 7 
 nova-manage db sync
 
+# fix loi libvirtError: internal error: no supported architecture for os type 'hvm'
+echo 'kvm_intel' >> /etc/modules
+
 echo "########## KHOI DONG LAI NOVA ##########"
 sleep 7 
 service nova-api restart
