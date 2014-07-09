@@ -1,4 +1,36 @@
-# HDCD - OpenStack Icehouse - Multi node
+HDCD - OpenStack Icehouse - Multi node
+===
+
+**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
+
+- [HDCD - OpenStack Icehouse - Multi node](#user-content-hdcd---openstack-icehouse---multi-node)
+- [A. Thông tin LAB](#user-content-a-th%C3%B4ng-tin-lab)
+	- [1. Mô hình đấu nối](#user-content-1-m%C3%B4-h%C3%ACnh-%C4%91%E1%BA%A5u-n%E1%BB%91i)
+	- [2. Thiết lập cho từng node](#user-content-2-thi%E1%BA%BFt-l%E1%BA%ADp-cho-t%E1%BB%ABng-node)
+- [B. Các bước thực hiện chung](#user-content-b-c%C3%A1c-b%C6%B0%E1%BB%9Bc-th%E1%BB%B1c-hi%E1%BB%87n-chung)
+	- [1. Thao tác trên tất cả các máy chủ](#user-content-1-thao-t%C3%A1c-tr%C3%AAn-t%E1%BA%A5t-c%E1%BA%A3-c%C3%A1c-m%C3%A1y-ch%E1%BB%A7)
+	- [2. Sửa file khai báo các thông số trước khi thực thi shell](#user-content-2-s%E1%BB%ADa-file-khai-b%C3%A1o-c%C3%A1c-th%C3%B4ng-s%E1%BB%91-tr%C6%B0%E1%BB%9Bc-khi-th%E1%BB%B1c-thi-shell)
+- [C. Thực hiện trên CONTROLLER NODE](#user-content-c-th%E1%BB%B1c-hi%E1%BB%87n-tr%C3%AAn-controller-node)
+	- [C.1. Thực thi script thiết lập IP, hostname ...](#user-content-c1-th%E1%BB%B1c-thi-script-thi%E1%BA%BFt-l%E1%BA%ADp-ip-hostname-)
+	- [C.2. Cài đặt các gói MYSQL, NTP cho Controller Node](#user-content-c2-c%C3%A0i-%C4%91%E1%BA%B7t-c%C3%A1c-g%C3%B3i-mysql-ntp-cho-controller-node)
+	- [C.3. Tạo Database cho các thành phần](#user-content-c3-t%E1%BA%A1o-database-cho-c%C3%A1c-th%C3%A0nh-ph%E1%BA%A7n)
+	- [C.4 Cài đặt và cấu hình keystone](#user-content-c4-c%C3%A0i-%C4%91%E1%BA%B7t-v%C3%A0-c%E1%BA%A5u-h%C3%ACnh-keystone)
+	- [C.5. Tạo user, role, tenant, phân quyền cho user và tạo các endpoint](#user-content-c5-t%E1%BA%A1o-user-role-tenant-ph%C3%A2n-quy%E1%BB%81n-cho-user-v%C3%A0-t%E1%BA%A1o-c%C3%A1c-endpoint)
+	- [C.6. Cài đặt thành phần GLANCE](#user-content-c6-c%C3%A0i-%C4%91%E1%BA%B7t-th%C3%A0nh-ph%E1%BA%A7n-glance)
+	- [C.7 Cài đặt NOVA](#user-content-c7-c%C3%A0i-%C4%91%E1%BA%B7t-nova)
+	- [C.8 Cài đặt NEUTRON](#user-content-c8-c%C3%A0i-%C4%91%E1%BA%B7t-neutron)
+- [D. CÀI ĐẶT TRÊN NETWORKNODE](#user-content-d-c%C3%80i-%C4%90%E1%BA%B6t-tr%C3%8An-networknode)
+	- [D.1. Thực hiện đặt IP cho NETWORK NODE với tham số khai báo trong file](#user-content-d1-th%E1%BB%B1c-hi%E1%BB%87n-%C4%91%E1%BA%B7t-ip-cho-network-node-v%E1%BB%9Bi-tham-s%E1%BB%91-khai-b%C3%A1o-trong-file)
+	- [D.2. Thực thi việc cài đặt NEUTRON và cấu hình](#user-content-d2-th%E1%BB%B1c-thi-vi%E1%BB%87c-c%C3%A0i-%C4%91%E1%BA%B7t-neutron-v%C3%A0-c%E1%BA%A5u-h%C3%ACnh)
+- [E. CÀI ĐẶT TRÊN COMPUTE NODE (COMPUTE1)](#user-content-e-c%C3%80i-%C4%90%E1%BA%B6t-tr%C3%8An-compute-node-compute1)
+	- [E.1. Đặt hostname, IP và các gói bổ trợ](#user-content-e1-%C4%90%E1%BA%B7t-hostname-ip-v%C3%A0-c%C3%A1c-g%C3%B3i-b%E1%BB%95-tr%E1%BB%A3)
+	- [E.2. Cài đặt các gói của NOVA cho COMPUTE NODE](#user-content-e2-c%C3%A0i-%C4%91%E1%BA%B7t-c%C3%A1c-g%C3%B3i-c%E1%BB%A7a-nova-cho-compute-node)
+- [F. CÀI HORIZON, tạo các network trên CONTROLLER NODE](#user-content-f-c%C3%80i-horizon-t%E1%BA%A1o-c%C3%A1c-network-tr%C3%AAn-controller-node)
+	- [F.1. Cài đặt Horizon](#user-content-f1-c%C3%A0i-%C4%91%E1%BA%B7t-horizon)
+	- [F.2. Tạo PUBLIC NET, PRIVATE NET, ROUTER](#user-content-f2-t%E1%BA%A1o-public-net-private-net-router)
+- [KÊT THÚC](#user-content-k%C3%8At-th%C3%9Ac)
+- 
+
 
 # A. Thông tin LAB
 
