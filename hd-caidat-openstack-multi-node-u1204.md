@@ -1,15 +1,18 @@
 # HDCD - OpenStack Icehouse - Multi node
 
-# Thông tin LAB
+# A. Thông tin LAB
 
+## 1. Mô hình đấu nối
+
+## 2. Thiết lập cho từng node
 - 3 máy chủ: Controller, Network, Compute1
 - Mỗi máy 03 card mạng: eth0, eth1, eth2
 
-# Mô hình đấu nối
 
-# Các bước thực hiện
 
-## Thao tác trên tất cả các máy chủ
+# B. Các bước thực hiện chung
+
+## 1. Thao tác trên tất cả các máy chủ
 Truy cập bằng tài khoản root vào máy các máy chủ và tải các gói, script chuẩn bị cho quá trình cài đặt
 
 	apt-get install git -y
@@ -18,7 +21,7 @@ Truy cập bằng tài khoản root vào máy các máy chủ và tải các gó
 	cd script-ubuntu1204
 	chmod +x *.sh
 
-## Sửa file khai báo các thông số trước khi thực thi shell
+## 2. Sửa file khai báo các thông số trước khi thực thi shell
 Trước lúc chỉnh sửa, KHÔNG cần gán IP tĩnh cho các NICs trên từng máy chủ.
 Dùng vi để sửa file config.cfg nằm trong thư mục script-ubuntu1204 với các IP theo ý bạn hoặc giữ nguyên các IP và đảm bảo chúng chưa được gán cho máy nào trong mạng của bạn.
 File gốc như sau: (tốt nhất đặt giống file gốc)
@@ -51,14 +54,14 @@ File gốc như sau: (tốt nhất đặt giống file gốc)
 
 Sau khi thay đổi xong chuyển qua thực thi các file dưới trên từng node
 
-# Thực hiện trên CONTROLLER NODE
-## Thực thi script thiết lập IP, hostname ...
+# C. Thực hiện trên CONTROLLER NODE
+## C.1. Thực thi script thiết lập IP, hostname ...
 
 	bash control-1.ipadd.sh
 	
 Sau khi thực hiện script trên, máy Controller sẽ khởi động lại và được gán IP tĩnh.
 
-## Cài đặt các gói MYSQL, NTP cho Controller Node
+## C.2. Cài đặt các gói MYSQL, NTP cho Controller Node
 Đăng nhập vào Controller bằng địa chỉ CON_EXT_IP (file gốc là 192.168.1.71) khai báo trong file config.cfg với tài khoản root.
 Ssau đó di chuyển vào thư mục script-ubuntu1204 bằng lệnh cd 
 
@@ -68,12 +71,12 @@ Thực thi file control-2.prepare.sh
 
     bash control-2.prepare.sh
 
-## Tạo Database cho các thành phần 
+## C.3. Tạo Database cho các thành phần 
 Thực thi shell dưới để tạo các database, user của database cho các thành phần
 
     bash control-3.create-db.sh
     
-## Cài đặt và cấu hình keystone
+## C.4 Cài đặt và cấu hình keystone
 
     bash control-4.keystone.sh
 
@@ -101,53 +104,53 @@ Kết quả của lệnh keystone user-list như sau
 
 Chuyển qua cài các dịch vụ tiếp theo
 
-## Tạo user, role, tenant, phân quyền cho user và tạo các endpoint
+## C.5. Tạo user, role, tenant, phân quyền cho user và tạo các endpoint
 Shell dưới thực hiện việc tạo user, tenant và gán quyền cho các user. Ngoài ra còn tạo ra các endpoint cho các dịch vụ. Các biến trong shell được lấy từ file config.cfg
 
     bash control-5-creatusetenant.sh
     
-## Cài đặt thành phần GLANCE
+## C.6. Cài đặt thành phần GLANCE
 GLANCE dùng để cung cấp image template để khởi tạo máy ảo
 
     bash control-6.glance.sh
     
-## Cài đặt NOVA
+## C.7 Cài đặt NOVA
 
     bash control-7.nova.sh
     
-## Cài đặt NEUTRON
+## C.8 Cài đặt NEUTRON
 
     bash control-8.neutron.sh
     
 
 Tạm dừng việc cài đặt trên CONTROLLER NODE, sau khi cài xong NETWORK NODE và COMPUTE1 NODE sẽ quay lại để cài HORIZON và tạo các network, router.
 
-# CÀI ĐẶT TRÊN NETWORKNODE
+# D. CÀI ĐẶT TRÊN NETWORKNODE
 Cài đặt NEUTRON, ML2 và cấu hình GRE, sử dụng use case per-router per-tenant.
 Lưu ý: Thực hiện bước tải script từ github về như hướng dẫn ở bước trên cùng
 
-## Thực hiện đặt IP cho NETWORK NODE với tham số khai báo trong file
+## D.1. Thực hiện đặt IP cho NETWORK NODE với tham số khai báo trong file
 Script thực hiện việc cài đặt OpenvSwitch và khai báo br-int & br-ex cho OpenvSwitch
 
     bash net-ipadd.sh
 
 NETWORK NODE sẽ khởi động lại, cần phải đăng nhập lại sau khi khởi động xong bằng tài khoản root.
 
-## Thực thi việc cài đặt NEUTRON và cấu hình
+## D.2. Thực thi việc cài đặt NEUTRON và cấu hình
 
     bash net-prepare.sh
 
 Kết thúc cài đặt trên NETWORK NODE và chuyển sang cài đặt COMPUTE NODE
 
-# CÀI ĐẶT TRÊN COMPUTE NODE (COMPUTE1)
+# E. CÀI ĐẶT TRÊN COMPUTE NODE (COMPUTE1)
 Lưu ý: Thực hiện cài đặt gói git và tải các script từ github về theo hướng dẫn ở bước trên cùng
 Thực hiện các shell dưới để thiết lập hostname, gán ip và cài đặt các thành phần của nove trên máy COMPUTE NODE
 
-## Đặt hostname, IP và các gói bổ trợ
+## E.1. Đặt hostname, IP và các gói bổ trợ
 
     bash com1-ipdd.sh
     
-## Cài đặt các gói của NOVA cho COMPUTE NODE
+## E.2. Cài đặt các gói của NOVA cho COMPUTE NODE
 
     bash com1-prepare.sh
     
@@ -155,13 +158,13 @@ Kết thúc bước cài đặt trên COMPUTE NODE, chuyển về CONTROLLER NOD
 
 
 
-# CÀI HORIZON, tạo các network trên CONTROLLER NODE
+# F. CÀI HORIZON, tạo các network trên CONTROLLER NODE
 
-## Cài đặt Horizon
+## F.1. Cài đặt Horizon
 
     bash control-horizon.sh
 
-## Tạo PUBLIC NET, PRIVATE NET, ROUTER
+## F.2. Tạo PUBLIC NET, PRIVATE NET, ROUTER
 Thực hiện script dưới để tạo các loại network cho OpenStack
 Tạo router, gán subnet cho router, gán gateway cho router 
 Khởi tạo một máy ảo với image là cirros để test
