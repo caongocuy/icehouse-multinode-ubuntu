@@ -113,7 +113,7 @@ GLANCE dùng để cung cấp image template để khởi tạo máy ảo
     
 ## Cài đặt NOVA
 
-    bassh control-7.nova.sh
+    bash control-7.nova.sh
     
 ## Cài đặt NEUTRON
 
@@ -124,6 +124,51 @@ GLANCE dùng để cung cấp image template để khởi tạo máy ảo
     bash control-horizon.sh
     
 Tạm dừng việc cài đặt trên CONTROLLER NODE, sau khi cài xong NETWORK NODE và COMPUTE1 NODE sẽ quay lại
+
+
+# CÀI ĐẶT TRÊN NETWORKNODE
+Cài đặt NEUTRON, ML2 và cấu hình GRE, sử dụng use case per-router per-tenant.
+Lưu ý: Thực hiện bước tải script từ github về như hướng dẫn ở bước trên cùng
+
+## Thực hiện đặt IP cho NETWORK NODE với tham số khai báo trong file
+Script thực hiện việc cài đặt OpenvSwitch và khai báo br-int & br-ex cho OpenvSwitch
+
+    bash net-ipadd.sh
+
+NETWORK NODE sẽ khởi động lại, cần phải đăng nhập lại sau khi khởi động xong bằng tài khoản root.
+
+## Thực thi việc cài đặt NEUTRON và cấu hình
+
+    bash net-prepare.sh
+
+Kết thúc cài đặt trên NETWORK NODE và chuyển sang cài đặt COMPUTE NODE
+
+# CÀI ĐẶT TRÊN COMPUTE NODE (COMPUTE1)
+Lưu ý: Thực hiện cài đặt gói git và tải các script từ github về theo hướng dẫn ở bước trên cùng
+Thực hiện các shell dưới để thiết lập hostname, gán ip và cài đặt các thành phần của nove trên máy COMPUTE NODE
+
+## Đặt hostname, IP và các gói bổ trợ
+
+    bash com1-ipdd.sh
+    
+## Cài đặt các gói của NOVA cho COMPUTE NODE
+
+    bash com1-prepare.sh
+    
+Kết thúc bước cài đặt trên COMPUTE NODE, chuyển về CONTROLLER NODE.
+
+
+# Tạo PUBLIC NET, PRIVATE NET, ROUTER
+Thực hiện script dưới để tạo các loại network cho OpenStack
+Tạo router, gán subnet cho router, gán gateway cho router 
+Khởi tạo một máy ảo với image là cirros để test
+
+    bash creat-network.sh
+    
+# KÊT THÚC
+
+
+
 
 
 
