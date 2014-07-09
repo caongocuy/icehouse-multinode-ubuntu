@@ -45,7 +45,7 @@ Vào tab "Edit" ==> Virtual Network Editor.
 - HDD: 20GB trở lên
 - RAM: 2GB trở lên
 - CPU: 02 (Có tích vào các chế độ ảo hóa)
-- NIC: 02 NICs (eth0 - chế độ bridge ) (eth1 - chế độ vmnet2). Đặt IP động 
+- NIC: 02 NICs (eth0 - chế độ vmnet2 ) (eth1 - chế độ brige). Đặt IP động 
 - Minh họa bằng hình như sau:
 
 ![Alt text](http://i.imgur.com/tlk95hq.png)
@@ -69,7 +69,7 @@ Vào tab "Edit" ==> Virtual Network Editor.
 - Hostname: compute1 
 - Minh họa bằng hình:
 
-![Alt text](http://prntscr.com/4104f5)
+![Alt text](http://i.imgur.com/zuNIVIE.png)
 
 
 ## 1. Mô hình đấu cài cài đặt
