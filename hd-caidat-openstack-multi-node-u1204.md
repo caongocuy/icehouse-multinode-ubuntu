@@ -73,27 +73,29 @@ Thực thi shell dưới để tạo các database, user của database cho các
 
     bash control-3.create-db.sh
     
-# Cài đặt và cấu hình keystone
+## Cài đặt và cấu hình keystone
 
     bash control-4.keystone.sh
 
-# Tạo user, role, tenant, phân quyền cho user và tạo các endpoint cho các dịch vụ trong OpenStack
+## Tạo user, role, tenant, phân quyền cho user và tạo các endpoint
+Shell dưới thực hiện việc tạo user, tenant và gán quyền cho các user. Ngoài ra còn tạo ra các endpoint cho các dịch vụ. Các biến trong shell được lấy từ file config.cfg
 
     bash control-5-creatusetenant.sh
     
-# Cài đặt thành phần GLANCE để cung cấp image template để khởi tạo máy ảo
+## Cài đặt thành phần GLANCE
+GLANCE dùng để cung cấp image template để khởi tạo máy ảo
 
     bash control-6.glance.sh
     
-# Cài đặt NOVA
+## Cài đặt NOVA
 
     bassh control-7.nova.sh
     
-# Cài đặt NEUTRON
+## Cài đặt NEUTRON
 
     bash control-8.neutron.sh
     
-# Cài đặt Horizon
+## Cài đặt Horizon
 
     bash control-horizon.sh
     
