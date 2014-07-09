@@ -20,24 +20,24 @@ Truy cập bằng tài khoản root vào máy các máy chủ và tải các gó
 
 ## Sửa file khai báo các thông số trước khi thực thi shell
 Trước lúc chỉnh sửa, KHÔNG cần gán IP tĩnh cho các NICs trên từng máy chủ.
-Dùng vi để sửa file config.cfg với các IP theo ý bạn hoặc giữ nguyên các IP và đảm bảo chúng chưa được gán cho máy nào trong mạng của bạn.
+Dùng vi để sửa file config.cfg nằm trong thư mục script-ubuntu1204 với các IP theo ý bạn hoặc giữ nguyên các IP và đảm bảo chúng chưa được gán cho máy nào trong mạng của bạn.
 File gốc như sau: (tốt nhất đặt giống file gốc)
 
-	\# Khai bao IP cho CONTROLLER NODE
+	# Khai bao IP cho CONTROLLER NODE
 	CON_MGNT_IP=10.10.10.71
 	CON_EXT_IP=192.168.1.71
 
-	\# Khai bao IP cho NETWORK NODE
+	# Khai bao IP cho NETWORK NODE
 	NET_MGNT_IP=10.10.10.72
 	NET_EXT_IP=192.168.1.72
 	NET_DATA_VM_IP=10.10.20.72
 
-	\# Khai bao IP cho COMPUTE1 NODE
+	# Khai bao IP cho COMPUTE1 NODE
 	COM1_MGNT_IP=10.10.10.73
 	COM1_EXT_IP=192.168.1.73
 	COM1_DATA_VM_IP=10.10.20.73
 
-	\# Khai bao IP cho COMPUTE2 NODE
+	# Khai bao IP cho COMPUTE2 NODE
 	COM2_MGNT_IP=10.10.10.74
 	COM2_EXT_IP=192.168.1.74
 	COM2_DATA_VM_IP=10.10.20.74
@@ -45,7 +45,7 @@ File gốc như sau: (tốt nhất đặt giống file gốc)
 	GATEWAY_IP=192.168.1.1
 	NETMASK_ADD=255.255.255.0
 
-	\# Set password
+	# Set password
 	DEFAULT_PASS='Welcome123'
 
 
