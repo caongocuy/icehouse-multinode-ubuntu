@@ -137,6 +137,10 @@ EOF
 # Xoa file sql mac dinh
 rm /var/lib/nova/nova.sqlite
 
+
+# fix loi libvirtError: internal error: no supported architecture for os type 'hvm'
+echo 'kvm_intel' >> /etc/modules
+ 
 # Khoi dong lai nova
 service nova-compute restart
 service nova-compute restart
@@ -242,6 +246,10 @@ sleep 5
 ########
 # Tao integration bridge
 ovs-vsctl add-br br-int
+
+
+# fix loi libvirtError: internal error: no supported architecture for os type 'hvm'
+echo 'kvm_intel' >> /etc/modules
 
 ##########
 echo "############ Khoi dong lai Compute ############"
