@@ -42,12 +42,35 @@ Vào tab "Edit" ==> Virtual Network Editor.
 ![Alt text](http://i.imgur.com/qQkp9EE.png)
 
 ### Cấu hình tối hiểu cho máy CONTROLLER
-- HDD: 40GB trở lên
+- HDD: 20GB trở lên
 - RAM: 2GB trở lên
-- CPU: 1 CPU (Có tích vào các chế độ ảo hóa)
+- CPU: 02 (Có tích vào các chế độ ảo hóa)
 - NIC: 02 NICs (eth0 - chế độ bridge ) (eth1 - chế độ vmnet2). Đặt IP động 
 - Minh họa bằng hình như sau:
+
 ![Alt text](http://i.imgur.com/tlk95hq.png)
+
+
+### Cấu hình tối thiểu cho NETWORK NODE
+- HDD: 20GB 
+- RAM: 2GB
+- CPU 01 (có lựa chọn chế độ ảo hóa)
+- NICs: 03. eth0 chế độ vmnet2. eth1 chế chộ bridge . eth2 chế độ vmnet3. Đặt IP động.
+- Hostname: network
+- Minh họa bằng hình:
+
+![Alt text](http://i.imgur.com/AeXsglg.png)
+
+### Cấu hình tối thiểu cho COMPUTE NODE (COMPUTE1)
+- HDD: 60GB
+- RAM: 3GB 
+- CPU 2x2 (Có lựa chọn ảo hóa)
+- NICs: 03. eth0 chế độ vmnet2. eth1 chế chộ bridge . eth2 chế độ vmnet3. Đặt IP động.
+- Hostname: compute1 
+- Minh họa bằng hình:
+
+![Alt text](http://prntscr.com/4104f5)
+
 
 ## 1. Mô hình đấu cài cài đặt
 
