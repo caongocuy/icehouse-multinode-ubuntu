@@ -135,6 +135,7 @@ Sau khi thay đổi xong chuyển qua thực thi các file dưới trên từng 
 	bash control-1.ipadd.sh
 	
 Sau khi thực hiện script trên, máy Controller sẽ khởi động lại và có thông số như sau:
+
 | NIC 	   	| IP ADDRESS 	|  SUBNET MASK  | GATEWAY       | DNS     |    Note    		|
 | ---------	|------------	|---------------|---------------|-------  |-----------------| 
 | eth0 		| 10.10.10.71	| 255.255.255.0 | Để trống		| 8.8.8.8 | Chế độ VMNET2   |
