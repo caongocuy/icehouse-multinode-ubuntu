@@ -36,14 +36,25 @@ ec2_private_dns_show_ip=True
 api_paste_config=/etc/nova/api-paste.ini
 volumes_path=/var/lib/nova/volumes
 enabled_apis=ec2,osapi_compute,metadata
-#
+auth_strategy = keystone
+
+# Khai bao cho RABBITMQ
 rpc_backend = rabbit
 rabbit_host = controller
 rabbit_password = $RABBIT_PASS
+
+# Cau hinh cho VNC
 my_ip = $CON_MGNT_IP
 vncserver_listen = $CON_MGNT_IP
 vncserver_proxyclient_address = $CON_MGNT_IP
-auth_strategy = keystone
+
+# Tu dong Start VM khi reboot OpenStack
+resume_guests_state_on_host_boot=True
+
+#Cho phep dat password cho Instance khi khoi tao
+libvirt_inject_password = True
+enable_instance_password = True
+
 network_api_class = nova.network.neutronv2.api.API
 neutron_url = http://controller:9696
 neutron_auth_strategy = keystone

@@ -373,7 +373,12 @@ Khởi tạo một máy ảo với image là cirros để test
 
     bash creat-network.sh
 
-Đăng nhập vào HORIZON ở bước F1 và sử dụng OpenStack
+### Khởi động lại các node
+Khởi động lần lượt các node
+- CONTROLLER 
+- NETWORK NODE 
+- COMPUTE NODE 
+Và đăng nhập vào HORIZON ở bước F.1 và sử dụng OpenStack
 # KÊT THÚC
  CHÚC VUI !
 
