@@ -164,15 +164,15 @@ Sau khi thực hiện script trên, máy Controller sẽ khởi động lại v�
 </table>
 
 #### C.2. Cài đặt các gói MYSQL, NTP cho Controller Node
-- Đăng nhập vào Controller bằng địa chỉ <b>CON_EXT_IP</b> khai báo trong file <b><i>config.cfg</i></b> là 192.168.1.71 bằng tài khoản root.
-- Sau đó di chuyển vào thư mục script-ubuntu1204 bằng lệnh cd và thực thi bằng lệnh bash
+Đăng nhập vào Controller bằng địa chỉ <b>CON_EXT_IP</b> khai báo trong file <b><i>config.cfg</i></b> là 192.168.1.71 bằng tài khoản root.
+Sau đó di chuyển vào thư mục script-ubuntu1204 bằng lệnh cd và thực thi bằng lệnh bash
 
 
     cd script-ubuntu1204
     bash control-2.prepare.sh
     
 #### C.3. Tạo Database cho các thành phần 
-- Thực thi shell dưới để tạo các database, user của database cho các thành phần
+Thực thi shell dưới để tạo các database, user của database cho các thành phần
 
     bash control-3.create-db.sh
 	
