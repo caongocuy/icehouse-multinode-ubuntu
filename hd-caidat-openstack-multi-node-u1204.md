@@ -32,8 +32,8 @@ HDCD - OpenStack Icehouse - Multi node
 - 
 
 
-## A. Thông tin LAB
-### A.0. Chuẩn bị trên VMware Workstation
+### A. Thông tin LAB
+#### A.0. Chuẩn bị trên VMware Workstation
 <b> Cấu hình các vmnet trong vmware workdstation như hình dưới. (Đảm bảo các dải thiết lập đúng với từng vmnet)</b>
 - VMNET0 - Chế độ bridge (mặc định). Nhận cùng dải IP card mạng trong laptop, 192.168.1.0/24
 - VMNET2 - Chế độ VMNET 2. Đặt dải IP 10.10.10.0/24
@@ -41,14 +41,14 @@ HDCD - OpenStack Icehouse - Multi node
 Vào tab "Edit" ==> Virtual Network Editor.
 ![Alt text](http://i.imgur.com/qQkp9EE.png)
 
-### A.1. Mô hình triển khai trong môi trường VMware Workstation
+#### A.1. Mô hình triển khai trong môi trường VMware Workstation
 
 #### A.2. Thiết lập cho từng node
 
 - Khi cài đặt UBUNTU trong Vmware Workstation đảm bảo đúng thứ tự network
 - Địa chỉ IP của các NICs để động, các shell sẽ tự động gán IP tĩnh sau (khai báo trong file <b><i> config.cfg </i></b>
 
-#### A.2.1. Cấu hình tối hiểu cho máy CONTROLLER
+##### A.2.1. Cấu hình tối hiểu cho máy CONTROLLER
 - HDD: 20GB trở lên
 - RAM: 2GB trở lên
 - CPU: 02 (Có tích vào các chế độ ảo hóa)
@@ -57,7 +57,7 @@ Vào tab "Edit" ==> Virtual Network Editor.
 Minh họa bằng hình như sau:
 ![Alt text](http://i.imgur.com/tlk95hq.png)
 
-#### A.2.2. Cấu hình tối thiểu cho NETWORK NODE
+##### A.2.2. Cấu hình tối thiểu cho NETWORK NODE
 - HDD: 20GB 
 - RAM: 2GB
 - CPU 01 (có lựa chọn chế độ ảo hóa)
@@ -68,7 +68,7 @@ Minh họa bằng hình:
 
 ![Alt text](http://i.imgur.com/AeXsglg.png)
 
-#### A.2.3. Cấu hình tối thiểu cho COMPUTE NODE (COMPUTE1)
+##### A.2.3. Cấu hình tối thiểu cho COMPUTE NODE (COMPUTE1)
 - HDD: 60GB
 - RAM: 3GB 
 - CPU 2x2 (Có lựa chọn ảo hóa)
@@ -79,9 +79,9 @@ Minh họa bằng hình:
 
 ![Alt text](http://i.imgur.com/zuNIVIE.png)
 
-## B. Các bước thực hiện chung
+### B. Các bước thực hiện chung
 
-### B.1. Thao tác trên tất cả các máy chủ
+#### B.1. Thao tác trên tất cả các máy chủ
 Truy cập bằng tài khoản root vào máy các máy chủ và tải các gói, script chuẩn bị cho quá trình cài đặt
 
 	apt-get install git -y
@@ -94,7 +94,7 @@ Truy cập bằng tài khoản root vào máy các máy chủ và tải các gó
 	
 	chmod +x *.sh
 
-## B.2. Sửa file khai báo các thông số trước khi thực thi shell
+#### B.2. Sửa file khai báo các thông số trước khi thực thi shell
 Trước lúc chỉnh sửa, KHÔNG cần gán IP tĩnh cho các NICs trên từng máy chủ.
 Dùng vi để sửa file config.cfg nằm trong thư mục script-ubuntu1204 với các IP theo ý bạn hoặc giữ nguyên các IP và đảm bảo chúng chưa được gán cho máy nào trong mạng của bạn.
 File gốc như sau: (tốt nhất đặt giống file gốc)
@@ -127,8 +127,8 @@ File gốc như sau: (tốt nhất đặt giống file gốc)
 
 Sau khi thay đổi xong chuyển qua thực thi các file dưới trên từng node
 
-# C. Thực hiện trên CONTROLLER NODE
-## C.1. Thực thi script thiết lập IP, hostname ...
+### C. Thực hiện trên CONTROLLER NODE
+#### C.1. Thực thi script thiết lập IP, hostname ...
 
 	bash control-1.ipadd.sh
 	
@@ -163,25 +163,25 @@ Sau khi thực hiện script trên, máy Controller sẽ khởi động lại v�
   </tr>
 </table>
 
-## C.2. Cài đặt các gói MYSQL, NTP cho Controller Node
+#### C.2. Cài đặt các gói MYSQL, NTP cho Controller Node
 - Đăng nhập vào Controller bằng địa chỉ <b>CON_EXT_IP</b> khai báo trong file <b><i>config.cfg</i></b> là 192.168.1.71 bằng tài khoản root.
 - Sau đó di chuyển vào thư mục script-ubuntu1204 bằng lệnh cd và thực thi bằng lệnh bash
 
     cd script-ubuntu1204
     bash control-2.prepare.sh
 
-## C.3. Tạo Database cho các thành phần 
+#### C.3. Tạo Database cho các thành phần 
 - Thực thi shell dưới để tạo các database, user của database cho các thành phần
 
     bash control-3.create-db.sh
     
-## C.4 Cài đặt và cấu hình keystone
+#### C.4 Cài đặt và cấu hình keystone
 
     bash control-4.keystone.sh
 
 
 
-## C.5. Tạo user, role, tenant, phân quyền cho user và tạo các endpoint
+#### C.5. Tạo user, role, tenant, phân quyền cho user và tạo các endpoint
 - Shell dưới thực hiện việc tạo user, tenant và gán quyền cho các user. 
 - Tạo ra các endpoint cho các dịch vụ. Các biến trong shell được lấy từ file config.cfg
 
@@ -211,29 +211,29 @@ Kết quả của lệnh keystone user-list như sau
 
 Chuyển qua cài các dịch vụ tiếp theo
     
-## C.6. Cài đặt thành phần GLANCE
+#### C.6. Cài đặt thành phần GLANCE
 GLANCE dùng để cung cấp image template để khởi tạo máy ảo
 
     bash control-6.glance.sh
 
 - Shell thực hiện việc cài đặt GLANCE và tạo image với hệ điều hành Cirros (Bản Ubuntu thu gọn) dùng để kiểm tra GLANCE và tạo máy ảo sau này.
     
-## C.7 Cài đặt NOVA
+#### C.7 Cài đặt NOVA
 
     bash control-7.nova.sh
     
-## C.8 Cài đặt NEUTRON
+#### C.8 Cài đặt NEUTRON
 
     bash control-8.neutron.sh
     
 
 Tạm dừng việc cài đặt trên CONTROLLER NODE, sau khi cài xong NETWORK NODE và COMPUTE1 NODE sẽ quay lại để cài HORIZON và tạo các network, router.
 
-# D. CÀI ĐẶT TRÊN NETWORK NODE
+### D. CÀI ĐẶT TRÊN NETWORK NODE
 - Cài đặt NEUTRON, ML2 và cấu hình GRE, sử dụng use case per-router per-tenant.
 - Lưu ý: Cần thực hiện bước tải script từ github về như hướng dẫn ở bước B.1 và B.2 (nếu có thay đổi IP)
 
-## D.1. Thiết lập IP, Hostname cho NETWORK NODE
+#### D.1. Thiết lập IP, Hostname cho NETWORK NODE
 Script thực hiện việc cài đặt OpenvSwitch và khai báo br-int & br-ex cho OpenvSwitch
 
     bash net-ipadd.sh
@@ -280,7 +280,7 @@ Script thực hiện việc cài đặt OpenvSwitch và khai báo br-int & br-ex
 
 Chú ý: Shell sẽ chuyển eth1 sang chế độ promisc và đặt IP cho br-ex được tạo ra sau khi cài OpenvSwitch
 
-## D.2. Thực thi việc cài đặt NEUTRON và cấu hình
+#### D.2. Thực thi việc cài đặt NEUTRON và cấu hình
 - Dùng putty ssh vào NETWORK NODE bằng IP 192.168.1.172 với tài khoản root
 - Di chuyển vào thư mục script-ubuntu1204 và thực thi shell dưới
 
@@ -290,11 +290,11 @@ Chú ý: Shell sẽ chuyển eth1 sang chế độ promisc và đặt IP cho br-
 
 Kết thúc cài đặt trên NETWORK NODE và chuyển sang cài đặt COMPUTE NODE
 
-# E. CÀI ĐẶT TRÊN COMPUTE NODE (COMPUTE1)
+### E. CÀI ĐẶT TRÊN COMPUTE NODE (COMPUTE1)
 Lưu ý: Cần thực hiện bước tải script từ github về như hướng dẫn ở bước B.1 và B.2 (nếu có thay đổi IP)
 Thực hiện các shell dưới để thiết lập hostname, gán ip và cài đặt các thành phần của nove trên máy COMPUTE NODE
 
-## E.1. Đặt hostname, IP và các gói bổ trợ
+#### E.1. Đặt hostname, IP và các gói bổ trợ
 
     bash com1-ipdd.sh
 
@@ -340,7 +340,7 @@ Sau khi thực hiện xong shell trên các NICs của COMPUTE NODE sẽ như sa
 
 COMPUTE node sẽ khởi động lại, cần phải đăng nhập bằng tải khoản root để thực hiện shell dưới
     
-## E.2. Cài đặt các gói của NOVA cho COMPUTE NODE
+#### E.2. Cài đặt các gói của NOVA cho COMPUTE NODE
 Đăng nhập bằng tài khoản root và thực thi các lệnh dưới để tiến hành cài đặt nova
 
     cd script-ubuntu1204
@@ -355,9 +355,9 @@ Kết thúc bước cài đặt trên COMPUTE NODE, chuyển về CONTROLLER NOD
 
 
 
-# F. CÀI HORIZON, tạo các network trên CONTROLLER NODE
+### F. CÀI HORIZON, tạo các network trên CONTROLLER NODE
 
-## F.1. Cài đặt Horizon
+#### F.1. Cài đặt Horizon
 Đăng nhập bằng tài khoản root và đứng tại thư mục /root/script-ubuntu1204
 
     cd /root/script-ubuntu1204
@@ -366,7 +366,7 @@ Kết thúc bước cài đặt trên COMPUTE NODE, chuyển về CONTROLLER NOD
 
 Sau khi thực hiện xong việc cài đặt HORIZON, màn hình sẽ trả về IP ADD, User và Password để đăng nhập vào horizon    
     
-## F.2. Tạo PUBLIC NET, PRIVATE NET, ROUTER
+#### F.2. Tạo PUBLIC NET, PRIVATE NET, ROUTER
 Tạo các policy để cho phép các máy ở ngoài có thể truy cập vào máy ảo (Instance) qua IP PUBLIC được floating.
 Thực hiện script dưới để tạo các loại network cho OpenStack
 Tạo router, gán subnet cho router, gán gateway cho router
@@ -374,13 +374,13 @@ Khởi tạo một máy ảo với image là cirros để test
 
     bash creat-network.sh
 
-### Khởi động lại các node
+#### Khởi động lại các node
 Khởi động lần lượt các node
 - CONTROLLER 
 - NETWORK NODE 
 - COMPUTE NODE 
 Và đăng nhập vào HORIZON ở bước F.1 và sử dụng OpenStack
-# KÊT THÚC
+### KÊT THÚC
  CHÚC VUI !
 
 
