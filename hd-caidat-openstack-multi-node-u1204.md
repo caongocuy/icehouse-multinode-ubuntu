@@ -83,7 +83,7 @@ Vào tab "Edit" ==> Virtual Network Editor.
 
 # B. Các bước thực hiện chung
 
-## 1. Thao tác trên tất cả các máy chủ
+## B.1. Thao tác trên tất cả các máy chủ
 Truy cập bằng tài khoản root vào máy các máy chủ và tải các gói, script chuẩn bị cho quá trình cài đặt
 
 	apt-get install git -y
@@ -96,7 +96,7 @@ Truy cập bằng tài khoản root vào máy các máy chủ và tải các gó
 	
 	chmod +x *.sh
 
-## 2. Sửa file khai báo các thông số trước khi thực thi shell
+## B.2. Sửa file khai báo các thông số trước khi thực thi shell
 Trước lúc chỉnh sửa, KHÔNG cần gán IP tĩnh cho các NICs trên từng máy chủ.
 Dùng vi để sửa file config.cfg nằm trong thư mục script-ubuntu1204 với các IP theo ý bạn hoặc giữ nguyên các IP và đảm bảo chúng chưa được gán cho máy nào trong mạng của bạn.
 File gốc như sau: (tốt nhất đặt giống file gốc)
