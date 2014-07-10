@@ -181,7 +181,12 @@ Thực thi shell dưới để tạo các database, user của database cho các
 
     bash control-4.keystone.sh
 
-Sau khi cài xong keystone, thực thi biến môi trường
+
+
+## C.5. Tạo user, role, tenant, phân quyền cho user và tạo các endpoint
+Shell dưới thực hiện việc tạo user, tenant và gán quyền cho các user. Ngoài ra còn tạo ra các endpoint cho các dịch vụ. Các biến trong shell được lấy từ file config.cfg
+
+    bash control-5-creatusetenant.sh
 
     source admin-openrc.sh
 
@@ -204,11 +209,6 @@ Kết quả của lệnh keystone user-list như sau
     +----------------------------------+---------+---------+-----------------------+
 
 Chuyển qua cài các dịch vụ tiếp theo
-
-## C.5. Tạo user, role, tenant, phân quyền cho user và tạo các endpoint
-Shell dưới thực hiện việc tạo user, tenant và gán quyền cho các user. Ngoài ra còn tạo ra các endpoint cho các dịch vụ. Các biến trong shell được lấy từ file config.cfg
-
-    bash control-5-creatusetenant.sh
     
 ## C.6. Cài đặt thành phần GLANCE
 GLANCE dùng để cung cấp image template để khởi tạo máy ảo
