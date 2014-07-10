@@ -258,7 +258,7 @@ Thông số về IP và hostname trên NETWORK NODE như sau:
     <td>Chế độ VMNET2</td>
   </tr>
   <tr>
-    <td>eth1</td>
+    <td>br-ex</td>
     <td>192.168.1.72</td>
     <td>255.255.255.0</td>
     <td>192.168.1.1</td>
@@ -275,12 +275,9 @@ Thông số về IP và hostname trên NETWORK NODE như sau:
   </tr>
 </table>
 
-## D.2. Thực thi việc cài đặt NEUTRON và cấu hình
-Sau khi thực hiện xong shell ở bước trên, NETWROK NODE sẽ có IP như sau (giống khai báo trong file config.cfg):
-- eth0: 10.10.10.72
-- br-ex: 192.168.1.72 (lấy IP của eth1 sau khi cài OpenvSwitch)
-- eth2: 10.10.20.72
+Chú ý: Shell sẽ chuyển eth1 sang chế độ promisc và đặt IP cho br-ex được tạo ra sau khi cài OpenvSwitch
 
+## D.2. Thực thi việc cài đặt NEUTRON và cấu hình
 Dùng putty ssh vào NETWORK NODE bằng IP 192.168.1.172 với tài khoản root
 Di chuyển vào thư mục script-ubuntu1204 và thực thi shell dưới
 
@@ -297,11 +294,45 @@ Thực hiện các shell dưới để thiết lập hostname, gán ip và cài 
 
     bash com1-ipdd.sh
 
+Sau khi thực hiện xong shell trên các NICs của COMPUTE NODE sẽ như sau: (giống với khai báo trong file <b><i>config.cfg</i></b>)
 
-Sau khi thực hiện xong shell trên các NICs của COMPUTE NODE sẽ như sau: (giống với khai báo trong file config.cfg)
-- eth0: 10.10.10.73
-- eth1: 192.168.1.73 (cài xong nova có thể disable đi)
-- eth2: 10.10.20.73
+<table>
+  <tr>
+    <th>Hostname</th>
+    <th>NICs</th>
+    <th>IP ADDRESS</th>
+    <th>SUBNET MASK</th>
+    <th>GATEWAY</th>
+    <th>DNS</th>
+    <th>NOTE</th>
+  </tr>
+  <tr>
+    <td rowspan="3">compute1</td>
+    <td>eth0</td>
+    <td>10.10.10.73</td>
+    <td>255.255.255.0</td>
+    <td>Để trống</td>
+    <td>Để trống</td>
+    <td>Chế độ VMNET2</td>
+  </tr>
+  <tr>
+    <td>br-ex</td>
+    <td>192.168.1.73</td>
+    <td>255.255.255.0</td>
+    <td>192.168.1.1</td>
+    <td>8.8.8.8</td>
+    <td>Chế độ bridge</td>
+  </tr>
+  <tr>
+    <td>eth2</td>
+    <td>10.10.20.73</td>
+    <td>255.255.255.0</td>
+    <td>Để trống</td>
+    <td>Để trống</td>
+    <td>Chế độ VMNET3</td>
+  </tr>
+</table>
+
 
 COMPUTE node sẽ khởi động lại, cần phải đăng nhập bằng tải khoản root để thực hiện shell dưới
     
