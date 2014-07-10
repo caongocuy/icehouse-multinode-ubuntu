@@ -166,6 +166,8 @@ Sau khi thực hiện script trên, máy Controller sẽ khởi động lại v�
 #### C.2. Cài đặt các gói MYSQL, NTP cho Controller Node
 - Đăng nhập vào Controller bằng địa chỉ <b>CON_EXT_IP</b> khai báo trong file <b><i>config.cfg</i></b> là 192.168.1.71 bằng tài khoản root.
 - Sau đó di chuyển vào thư mục script-ubuntu1204 bằng lệnh cd và thực thi bằng lệnh bash
+
+
     cd script-ubuntu1204
     bash control-2.prepare.sh
     
@@ -182,13 +184,16 @@ Sau khi thực hiện script trên, máy Controller sẽ khởi động lại v�
 - Shell dưới thực hiện việc tạo user, tenant và gán quyền cho các user. 
 - Tạo ra các endpoint cho các dịch vụ. Các biến trong shell được lấy từ file config.cfg
 
+
     bash control-5-creatusetenant.sh
 
 - Thực thi file admin-openrc.sh để khai báo biến môi trường.
 
+
     source admin-openrc.sh
 
 - Và kiểm tra lại dịch vụ keystone xem đã hoạt động tốt chưa bằng lệnh dưới.
+
 
     keystone user-list
 
@@ -217,9 +222,11 @@ GLANCE dùng để cung cấp image template để khởi tạo máy ảo
     
 #### C.7 Cài đặt NOVA
 
+
     bash control-7.nova.sh
     
 #### C.8 Cài đặt NEUTRON
+
 
     bash control-8.neutron.sh
     
