@@ -134,7 +134,12 @@ Sau khi thay đổi xong chuyển qua thực thi các file dưới trên từng 
 
 	bash control-1.ipadd.sh
 	
-Sau khi thực hiện script trên, máy Controller sẽ khởi động lại và được gán IP tĩnh.
+Sau khi thực hiện script trên, máy Controller sẽ khởi động lại và có thông số như sau:
+| NIC 	   	| IP ADDRESS 	|  SUBNET MASK  | GATEWAY       | DNS     |    Note    		|
+| ---------	|------------	|---------------|---------------|-------  |-----------------| 
+| eth0 		| 10.10.10.71	| 255.255.255.0 | Để trống		| 8.8.8.8 | Chế độ VMNET2   |
+| eth1 		| 192.168.1.71	| 255.255.255.0 | 192.168.1.1 	|   NULL  | Chế độ Bridge	|
+
 
 ## C.2. Cài đặt các gói MYSQL, NTP cho Controller Node
 Đăng nhập vào Controller bằng địa chỉ CON_EXT_IP (file gốc là 192.168.1.71) khai báo trong file config.cfg với tài khoản root.
