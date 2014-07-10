@@ -32,8 +32,8 @@ HDCD - OpenStack Icehouse - Multi node
 - 
 
 
-# A. Thông tin LAB
-## A.0. Chuẩn bị trên VMware Workstation
+## A. Thông tin LAB
+### A.0. Chuẩn bị trên VMware Workstation
 <b> Cấu hình các vmnet trong vmware workdstation như hình dưới. (Đảm bảo các dải thiết lập đúng với từng vmnet)</b>
 - VMNET0 - Chế độ bridge (mặc định). Nhận cùng dải IP card mạng trong laptop, 192.168.1.0/24
 - VMNET2 - Chế độ VMNET 2. Đặt dải IP 10.10.10.0/24
@@ -41,12 +41,14 @@ HDCD - OpenStack Icehouse - Multi node
 Vào tab "Edit" ==> Virtual Network Editor.
 ![Alt text](http://i.imgur.com/qQkp9EE.png)
 
-## A.1. Mô hình triển khai trong môi trường VMware Workstation
+### A.1. Mô hình triển khai trong môi trường VMware Workstation
 
-## A.2. Thiết lập cho từng node
+#### A.2. Thiết lập cho từng node
+
 - Khi cài đặt UBUNTU trong Vmware Workstation đảm bảo đúng thứ tự network
 - Địa chỉ IP của các NICs để động, các shell sẽ tự động gán IP tĩnh sau (khai báo trong file <b><i> config.cfg </i></b>
-### Cấu hình tối hiểu cho máy CONTROLLER
+
+#### A.2.1. Cấu hình tối hiểu cho máy CONTROLLER
 - HDD: 20GB trở lên
 - RAM: 2GB trở lên
 - CPU: 02 (Có tích vào các chế độ ảo hóa)
@@ -55,7 +57,7 @@ Vào tab "Edit" ==> Virtual Network Editor.
 Minh họa bằng hình như sau:
 ![Alt text](http://i.imgur.com/tlk95hq.png)
 
-### Cấu hình tối thiểu cho NETWORK NODE
+#### A.2.2. Cấu hình tối thiểu cho NETWORK NODE
 - HDD: 20GB 
 - RAM: 2GB
 - CPU 01 (có lựa chọn chế độ ảo hóa)
@@ -63,9 +65,10 @@ Minh họa bằng hình như sau:
 - Hostname: network
 
 Minh họa bằng hình:
+
 ![Alt text](http://i.imgur.com/AeXsglg.png)
 
-### Cấu hình tối thiểu cho COMPUTE NODE (COMPUTE1)
+#### A.2.3. Cấu hình tối thiểu cho COMPUTE NODE (COMPUTE1)
 - HDD: 60GB
 - RAM: 3GB 
 - CPU 2x2 (Có lựa chọn ảo hóa)
@@ -73,12 +76,12 @@ Minh họa bằng hình:
 - Hostname: compute1 
 
 Minh họa bằng hình:
+
 ![Alt text](http://i.imgur.com/zuNIVIE.png)
 
+## B. Các bước thực hiện chung
 
-# B. Các bước thực hiện chung
-
-## B.1. Thao tác trên tất cả các máy chủ
+### B.1. Thao tác trên tất cả các máy chủ
 Truy cập bằng tài khoản root vào máy các máy chủ và tải các gói, script chuẩn bị cho quá trình cài đặt
 
 	apt-get install git -y
@@ -161,14 +164,14 @@ Sau khi thực hiện script trên, máy Controller sẽ khởi động lại v�
 </table>
 
 ## C.2. Cài đặt các gói MYSQL, NTP cho Controller Node
-Đăng nhập vào Controller bằng địa chỉ <b>CON_EXT_IP</b> (file gốc là 192.168.1.71) khai báo trong file <b><i>config.cfg</i></b> với tài khoản root.
-Ssau đó di chuyển vào thư mục script-ubuntu1204 bằng lệnh cd và thực thi bằng lệnh bash
+- Đăng nhập vào Controller bằng địa chỉ <b>CON_EXT_IP</b> khai báo trong file <b><i>config.cfg</i></b> là 192.168.1.71 bằng tài khoản root.
+- Sau đó di chuyển vào thư mục script-ubuntu1204 bằng lệnh cd và thực thi bằng lệnh bash
 
     cd script-ubuntu1204
     bash control-2.prepare.sh
 
 ## C.3. Tạo Database cho các thành phần 
-Thực thi shell dưới để tạo các database, user của database cho các thành phần
+- Thực thi shell dưới để tạo các database, user của database cho các thành phần
 
     bash control-3.create-db.sh
     
@@ -179,15 +182,16 @@ Thực thi shell dưới để tạo các database, user của database cho các
 
 
 ## C.5. Tạo user, role, tenant, phân quyền cho user và tạo các endpoint
-Shell dưới thực hiện việc tạo user, tenant và gán quyền cho các user. Ngoài ra còn tạo ra các endpoint cho các dịch vụ. Các biến trong shell được lấy từ file config.cfg
+- Shell dưới thực hiện việc tạo user, tenant và gán quyền cho các user. 
+- Tạo ra các endpoint cho các dịch vụ. Các biến trong shell được lấy từ file config.cfg
 
     bash control-5-creatusetenant.sh
 
-Thực thi file admin-openrc.sh để khai báo biến môi trường.
+- Thực thi file admin-openrc.sh để khai báo biến môi trường.
 
     source admin-openrc.sh
 
-Và kiểm tra lại dịch vụ keystone xem đã hoạt động tốt chưa bằng lệnh dưới.
+- Và kiểm tra lại dịch vụ keystone xem đã hoạt động tốt chưa bằng lệnh dưới.
 
      keystone user-list
 
@@ -211,6 +215,8 @@ Chuyển qua cài các dịch vụ tiếp theo
 GLANCE dùng để cung cấp image template để khởi tạo máy ảo
 
     bash control-6.glance.sh
+
+- Shell thực hiện việc cài đặt GLANCE và tạo image với hệ điều hành Cirros (Bản Ubuntu thu gọn) dùng để kiểm tra GLANCE và tạo máy ảo sau này.
     
 ## C.7 Cài đặt NOVA
 
@@ -223,11 +229,11 @@ GLANCE dùng để cung cấp image template để khởi tạo máy ảo
 
 Tạm dừng việc cài đặt trên CONTROLLER NODE, sau khi cài xong NETWORK NODE và COMPUTE1 NODE sẽ quay lại để cài HORIZON và tạo các network, router.
 
-# D. CÀI ĐẶT TRÊN NETWORKNODE
+# D. CÀI ĐẶT TRÊN NETWORK NODE
 - Cài đặt NEUTRON, ML2 và cấu hình GRE, sử dụng use case per-router per-tenant.
 - Lưu ý: Cần thực hiện bước tải script từ github về như hướng dẫn ở bước B.1 và B.2 (nếu có thay đổi IP)
 
-## D.1. Thực hiện đặt IP cho NETWORK NODE với tham số khai báo trong file
+## D.1. Thiết lập IP, Hostname cho NETWORK NODE
 Script thực hiện việc cài đặt OpenvSwitch và khai báo br-int & br-ex cho OpenvSwitch
 
     bash net-ipadd.sh
