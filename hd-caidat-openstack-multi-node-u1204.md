@@ -136,10 +136,10 @@ Sau khi thay đổi xong chuyển qua thực thi các file dưới trên từng 
 	
 Sau khi thực hiện script trên, máy Controller sẽ khởi động lại và có thông số như sau:
 
-| NIC 	   	| IP ADDRESS 	|  SUBNET MASK  | GATEWAY       | DNS     |    Note    		|
-| ---------	|------------	|---------------|---------------|-------  |-----------------| 
-| eth0 		| 10.10.10.71	| 255.255.255.0 | Để trống		| 8.8.8.8 | Chế độ VMNET2   |
-| eth1 		| 192.168.1.71	| 255.255.255.0 | 192.168.1.1 	|   NULL  | Chế độ Bridge	|
+| NIC 	   	| IP ADDRESS 	|  SUBNET MASK  | GATEWAY       | DNS     	|    Note    		|
+| ---------	|------------	|---------------|---------------|-------  	|-----------------| 
+| eth0 		| 10.10.10.71	| 255.255.255.0 | Để trống		| Để trống	| Chế độ VMNET2   |
+| eth1 		| 192.168.1.71	| 255.255.255.0 | 192.168.1.1 	| 8.8.8.8 	| Chế độ Bridge	|
 
 <table>
   <tr>
@@ -152,21 +152,21 @@ Sau khi thực hiện script trên, máy Controller sẽ khởi động lại v�
     <th>Note</th>
   </tr>
   <tr>
-    <td rowspan="2"></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td rowspan="2"> controller</td>
+    <td>eth0</td>
+    <td>10.10.10.71</td>
+    <td>255.255.255.0</td>
+    <td>Để trống</td>
+    <td>Để trống</td>
+    <td>Chế độ VMNET2</td>
   </tr>
   <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>eth1</td>
+    <td>192.168.1.71</td>
+    <td>255.255.255.0</td>
+    <td>192.168.1.1</td>
+    <td>8.8.8.8</td>
+    <td>Chế độ brige</td>
   </tr>
 </table>
 
