@@ -188,9 +188,11 @@ Shell dưới thực hiện việc tạo user, tenant và gán quyền cho các 
 
     bash control-5-creatusetenant.sh
 
+Thực thi file admin-openrc.sh để khai báo biến môi trường.
+
     source admin-openrc.sh
 
-Và kiểm tra lại dịch vụ keystone xem đã hoạt động tốt chưa bằng lệnh dưới
+Và kiểm tra lại dịch vụ keystone xem đã hoạt động tốt chưa bằng lệnh dưới.
 
      keystone user-list
 
@@ -227,16 +229,16 @@ GLANCE dùng để cung cấp image template để khởi tạo máy ảo
 Tạm dừng việc cài đặt trên CONTROLLER NODE, sau khi cài xong NETWORK NODE và COMPUTE1 NODE sẽ quay lại để cài HORIZON và tạo các network, router.
 
 # D. CÀI ĐẶT TRÊN NETWORKNODE
-Cài đặt NEUTRON, ML2 và cấu hình GRE, sử dụng use case per-router per-tenant.
-Lưu ý: Cần thực hiện bước tải script từ github về như hướng dẫn ở bước B.1 và B.2 (nếu có thay đổi IP)
+- Cài đặt NEUTRON, ML2 và cấu hình GRE, sử dụng use case per-router per-tenant.
+- Lưu ý: Cần thực hiện bước tải script từ github về như hướng dẫn ở bước B.1 và B.2 (nếu có thay đổi IP)
 
 ## D.1. Thực hiện đặt IP cho NETWORK NODE với tham số khai báo trong file
 Script thực hiện việc cài đặt OpenvSwitch và khai báo br-int & br-ex cho OpenvSwitch
 
     bash net-ipadd.sh
 
-NETWORK NODE sẽ khởi động lại, cần phải đăng nhập lại sau khi khởi động xong bằng tài khoản root.
-Thông số về IP và hostname trên NETWORK NODE như sau:
+- NETWORK NODE sẽ khởi động lại, cần phải đăng nhập lại sau khi khởi động xong bằng tài khoản root.
+- Thông số về IP và hostname trên NETWORK NODE như sau:
 
 <table>
   <tr>
@@ -278,10 +280,11 @@ Thông số về IP và hostname trên NETWORK NODE như sau:
 Chú ý: Shell sẽ chuyển eth1 sang chế độ promisc và đặt IP cho br-ex được tạo ra sau khi cài OpenvSwitch
 
 ## D.2. Thực thi việc cài đặt NEUTRON và cấu hình
-Dùng putty ssh vào NETWORK NODE bằng IP 192.168.1.172 với tài khoản root
-Di chuyển vào thư mục script-ubuntu1204 và thực thi shell dưới
+- Dùng putty ssh vào NETWORK NODE bằng IP 192.168.1.172 với tài khoản root
+- Di chuyển vào thư mục script-ubuntu1204 và thực thi shell dưới
 
     cd script-ubuntu1204
+	
     bash net-prepare.sh
 
 Kết thúc cài đặt trên NETWORK NODE và chuyển sang cài đặt COMPUTE NODE
@@ -340,6 +343,7 @@ COMPUTE node sẽ khởi động lại, cần phải đăng nhập bằng tải 
 Đăng nhập bằng tài khoản root và thực thi các lệnh dưới để tiến hành cài đặt nova
 
     cd script-ubuntu1204
+	
     bash com1-prepare.sh
 
 Chọn YES ở màn hình trên trong quá trình cài đặt
@@ -356,6 +360,7 @@ Kết thúc bước cài đặt trên COMPUTE NODE, chuyển về CONTROLLER NOD
 Đăng nhập bằng tài khoản root và đứng tại thư mục /root/script-ubuntu1204
 
     cd /root/script-ubuntu1204
+	
     bash control-horizon.sh
 
 Sau khi thực hiện xong việc cài đặt HORIZON, màn hình sẽ trả về IP ADD, User và Password để đăng nhập vào horizon    
