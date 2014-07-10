@@ -44,13 +44,15 @@ Vào tab "Edit" ==> Virtual Network Editor.
 ## A.1. Mô hình triển khai trong môi trường VMware Workstation
 
 ## A.2. Thiết lập cho từng node
+- Khi cài đặt UBUNTU trong Vmware Workstation đảm bảo đúng thứ tự network
+- Địa chỉ IP của các NICs để động, các shell sẽ tự động gán IP tĩnh sau (khai báo trong file <b><i> config.cfg </i></b>
 ### Cấu hình tối hiểu cho máy CONTROLLER
 - HDD: 20GB trở lên
 - RAM: 2GB trở lên
 - CPU: 02 (Có tích vào các chế độ ảo hóa)
 - NIC: 02 NICs (eth0 - chế độ vmnet2 ) (eth1 - chế độ brige). Đặt IP động 
-- Minh họa bằng hình như sau:
 
+Minh họa bằng hình như sau:
 ![Alt text](http://i.imgur.com/tlk95hq.png)
 
 ### Cấu hình tối thiểu cho NETWORK NODE
@@ -59,8 +61,8 @@ Vào tab "Edit" ==> Virtual Network Editor.
 - CPU 01 (có lựa chọn chế độ ảo hóa)
 - NICs: 03. eth0 chế độ vmnet2. eth1 chế chộ bridge . eth2 chế độ vmnet3. Đặt IP động.
 - Hostname: network
-- Minh họa bằng hình:
 
+Minh họa bằng hình:
 ![Alt text](http://i.imgur.com/AeXsglg.png)
 
 ### Cấu hình tối thiểu cho COMPUTE NODE (COMPUTE1)
@@ -69,8 +71,8 @@ Vào tab "Edit" ==> Virtual Network Editor.
 - CPU 2x2 (Có lựa chọn ảo hóa)
 - NICs: 03. eth0 chế độ vmnet2. eth1 chế chộ bridge . eth2 chế độ vmnet3. Đặt IP động.
 - Hostname: compute1 
-- Minh họa bằng hình:
 
+Minh họa bằng hình:
 ![Alt text](http://i.imgur.com/zuNIVIE.png)
 
 
