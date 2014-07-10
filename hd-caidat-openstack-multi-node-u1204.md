@@ -141,6 +141,28 @@ Sau khi thực hiện script trên, máy Controller sẽ khởi động lại v�
 | eth0 		| 10.10.10.71	| 255.255.255.0 | Để trống		| 8.8.8.8 | Chế độ VMNET2   |
 | eth1 		| 192.168.1.71	| 255.255.255.0 | 192.168.1.1 	|   NULL  | Chế độ Bridge	|
 
+<table>
+  <tr>
+    <th rowspan="2"></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
 
 ## C.2. Cài đặt các gói MYSQL, NTP cho Controller Node
 Đăng nhập vào Controller bằng địa chỉ CON_EXT_IP (file gốc là 192.168.1.71) khai báo trong file config.cfg với tài khoản root.
