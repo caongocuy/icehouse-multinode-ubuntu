@@ -136,11 +136,6 @@ Sau khi thay đổi xong chuyển qua thực thi các file dưới trên từng 
 	
 Sau khi thực hiện script trên, máy Controller sẽ khởi động lại và có thông số như sau:
 
-| NIC 	   	| IP ADDRESS 	|  SUBNET MASK  | GATEWAY       | DNS     	|    Note    		|
-| ---------	|------------	|---------------|---------------|-------  	|-----------------| 
-| eth0 		| 10.10.10.71	| 255.255.255.0 | Để trống		| Để trống	| Chế độ VMNET2   |
-| eth1 		| 192.168.1.71	| 255.255.255.0 | 192.168.1.1 	| 8.8.8.8 	| Chế độ Bridge	|
-
 <table>
   <tr>
     <th>Hostname</th>
@@ -171,7 +166,7 @@ Sau khi thực hiện script trên, máy Controller sẽ khởi động lại v�
 </table>
 
 ## C.2. Cài đặt các gói MYSQL, NTP cho Controller Node
-Đăng nhập vào Controller bằng địa chỉ CON_EXT_IP (file gốc là 192.168.1.71) khai báo trong file config.cfg với tài khoản root.
+Đăng nhập vào Controller bằng địa chỉ <b>CON_EXT_IP</b> (file gốc là 192.168.1.71) khai báo trong file <b><i>config.cfg</i></b> với tài khoản root.
 Ssau đó di chuyển vào thư mục script-ubuntu1204 bằng lệnh cd 
 
     cd script-ubuntu1204
