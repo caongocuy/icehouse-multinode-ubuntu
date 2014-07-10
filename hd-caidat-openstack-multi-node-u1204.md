@@ -183,16 +183,13 @@ Thực thi shell dưới để tạo các database, user của database cho các
 - Shell dưới thực hiện việc tạo user, tenant và gán quyền cho các user. 
 - Tạo ra các endpoint cho các dịch vụ. Các biến trong shell được lấy từ file config.cfg
 
-
     bash control-5-creatusetenant.sh
 
 - Thực thi file admin-openrc.sh để khai báo biến môi trường.
 
-
     source admin-openrc.sh
 
 - Và kiểm tra lại dịch vụ keystone xem đã hoạt động tốt chưa bằng lệnh dưới.
-
 
     keystone user-list
 
