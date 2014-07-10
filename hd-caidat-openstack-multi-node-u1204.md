@@ -139,7 +139,7 @@ Sau khi thực hiện script trên, máy Controller sẽ khởi động lại v�
 <table>
   <tr>
     <th>Hostname</th>
-    <th>NIC</th>
+    <th>NICs</th>
     <th>IP ADDRESS</th>
     <th>SUBNET MASK</th>
     <th>GATEWAY</th>
@@ -167,12 +167,9 @@ Sau khi thực hiện script trên, máy Controller sẽ khởi động lại v�
 
 ## C.2. Cài đặt các gói MYSQL, NTP cho Controller Node
 Đăng nhập vào Controller bằng địa chỉ <b>CON_EXT_IP</b> (file gốc là 192.168.1.71) khai báo trong file <b><i>config.cfg</i></b> với tài khoản root.
-Ssau đó di chuyển vào thư mục script-ubuntu1204 bằng lệnh cd 
+Ssau đó di chuyển vào thư mục script-ubuntu1204 bằng lệnh cd và thực thi bằng lệnh bash
 
     cd script-ubuntu1204
-
-Thực thi file control-2.prepare.sh
-
     bash control-2.prepare.sh
 
 ## C.3. Tạo Database cho các thành phần 
@@ -239,6 +236,44 @@ Script thực hiện việc cài đặt OpenvSwitch và khai báo br-int & br-ex
     bash net-ipadd.sh
 
 NETWORK NODE sẽ khởi động lại, cần phải đăng nhập lại sau khi khởi động xong bằng tài khoản root.
+Thông số về IP và hostname trên NETWORK NODE như sau:
+
+<table>
+  <tr>
+    <th>Hostname</th>
+    <th>NICs</th>
+    <th>IP ADDRESS</th>
+    <th>SUBNET MASK</th>
+    <th>GATEWAY</th>
+    <th>DNS</th>
+    <th>NOTE</th>
+  </tr>
+  <tr>
+    <td rowspan="3">network</td>
+    <td>eth0</td>
+    <td>10.10.10.72</td>
+    <td>255.255.255.0</td>
+    <td>Để trống</td>
+    <td>Để trống</td>
+    <td>Chế độ VMNET2</td>
+  </tr>
+  <tr>
+    <td>eth1</td>
+    <td>192.168.1.72</td>
+    <td>255.255.255.0</td>
+    <td>192.168.1.1</td>
+    <td>8.8.8.8</td>
+    <td>Chế độ bridge</td>
+  </tr>
+  <tr>
+    <td>eth2</td>
+    <td>10.10.20.72</td>
+    <td>255.255.255.0</td>
+    <td>Để trống</td>
+    <td>Để trống</td>
+    <td>Chế độ VMNET3</td>
+  </tr>
+</table>
 
 ## D.2. Thực thi việc cài đặt NEUTRON và cấu hình
 Sau khi thực hiện xong shell ở bước trên, NETWROK NODE sẽ có IP như sau (giống khai báo trong file config.cfg):
