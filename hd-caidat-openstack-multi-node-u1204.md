@@ -168,13 +168,13 @@ Sau khi thực hiện script trên, máy Controller sẽ khởi động lại v�
 - Sau đó di chuyển vào thư mục script-ubuntu1204 bằng lệnh cd và thực thi bằng lệnh bash
 
     cd script-ubuntu1204
-    bash control-2.prepare.sh
+	bash control-2.prepare.sh
 
 #### C.3. Tạo Database cho các thành phần 
 - Thực thi shell dưới để tạo các database, user của database cho các thành phần
 
     bash control-3.create-db.sh
-    
+	
 #### C.4 Cài đặt và cấu hình keystone
 
     bash control-4.keystone.sh
