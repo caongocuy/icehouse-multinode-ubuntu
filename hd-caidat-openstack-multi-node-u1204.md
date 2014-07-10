@@ -143,19 +143,25 @@ Sau khi thực hiện script trên, máy Controller sẽ khởi động lại v�
 
 <table>
   <tr>
-    <th rowspan="2"></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Hostname</th>
+    <th>NIC</th>
+    <th>IP ADDRESS</th>
+    <th>SUBNET MASK</th>
+    <th>GATEWAY</th>
+    <th>DNS</th>
+    <th>Note</th>
+  </tr>
+  <tr>
+    <td rowspan="2"></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
   </tr>
   <tr>
     <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
     <td></td>
     <td></td>
     <td></td>
