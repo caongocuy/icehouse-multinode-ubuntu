@@ -130,7 +130,7 @@ Sau khi thay đổi xong chuyển qua thực thi các file dưới trên từng 
 ### C. Thực hiện trên CONTROLLER NODE
 #### C.1. Thực thi script thiết lập IP, hostname ...
 
-	bash control-1.ipadd.sh
+    bash control-1.ipadd.sh
 	
 Sau khi thực hiện script trên, máy Controller sẽ khởi động lại và có thông số như sau:
 
@@ -168,8 +168,8 @@ Sau khi thực hiện script trên, máy Controller sẽ khởi động lại v�
 - Sau đó di chuyển vào thư mục script-ubuntu1204 bằng lệnh cd và thực thi bằng lệnh bash
 
     cd script-ubuntu1204
-	bash control-2.prepare.sh
-
+    bash control-2.prepare.sh
+    
 #### C.3. Tạo Database cho các thành phần 
 - Thực thi shell dưới để tạo các database, user của database cho các thành phần
 
@@ -178,8 +178,6 @@ Sau khi thực hiện script trên, máy Controller sẽ khởi động lại v�
 #### C.4 Cài đặt và cấu hình keystone
 
     bash control-4.keystone.sh
-
-
 
 #### C.5. Tạo user, role, tenant, phân quyền cho user và tạo các endpoint
 - Shell dưới thực hiện việc tạo user, tenant và gán quyền cho các user. 
@@ -193,7 +191,7 @@ Sau khi thực hiện script trên, máy Controller sẽ khởi động lại v�
 
 - Và kiểm tra lại dịch vụ keystone xem đã hoạt động tốt chưa bằng lệnh dưới.
 
-     keystone user-list
+    keystone user-list
 
 Kết quả của lệnh keystone user-list như sau 
 
