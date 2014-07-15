@@ -1,7 +1,7 @@
 HDCD - OpenStack Icehouse - Multi node
 ===
 
-sua file
+xoa di 
 
 **Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
 
